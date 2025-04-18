@@ -1,0 +1,149 @@
+body {
+  background-color: #f5f5dc; /* Cream background */
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card styling */
+.auth-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 1rem;
+}
+
+.auth-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Form elements */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: #885a04;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #4e3411;
+}
+
+.btn-secondary {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #ad6f12;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  text-align: center;
+}
+
+/* Error message */
+.error-message {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+/* Password Strength Meter */
+.password-strength-meter {
+  margin-top: 0.5rem;
+}
+
+.strength-bar {
+  height: 5px;
+  background: #eee;
+  border-radius: 2px;
+  margin-bottom: 0.25rem;
+  transition: width 0.3s, background 0.3s;
+}
+
+.strength-bar.weak {
+  width: 25%;
+  background: #ff4444;
+}
+
+.strength-bar.medium {
+  width: 50%;
+  background: #ffbb33;
+}
+
+.strength-bar.strong {
+  width: 75%;
+  background: #00C851;
+}
+
+.strength-bar.very-strong {
+  width: 100%;
+  background: #00C851;
+}
+
+.strength-text {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.strength-text.weak {
+  color: #ff4444;
+}
+
+.strength-text.medium {
+  color: #ffbb33;
+}
+
+.strength-text.strong,
+.strength-text.very-strong {
+  color: #00C851;
+}
+
+/* Footer link */
+.auth-footer {
+  text-align: center;
+  margin-top: 1rem;
+  color: #555;
+}
