@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
+import ShoeFilter from "./components/ShoeCategory";
 
 function App() {
   const [shoeList,setShoeList]=useState([])
@@ -21,9 +22,10 @@ function App() {
       setShoeList(data)
     })
   },[])
+
   
   return (
-   <div>
+   <div style={{gap:10,display:"flex",flexDirection:"column", justifyContent:"center",alignContent:"center"}}>
     <AuthProvider>
       <Routes>
         <Route path="/" element={
@@ -37,8 +39,10 @@ function App() {
         <Route path="/reset-password" element={<PasswordReset />} />
       </Routes>
     </AuthProvider>
+    <ShoeFilter shoes={shoeList} setFilteredShoes={setFilteredShoes}/>
     <ShoeList shoes={filteredShoes}  />
   </div>
+
 
   )
 
