@@ -1,3 +1,6 @@
+
+import React ,{useState,useEffect} from "react";
+import ShoeList from "./components/ShoesList";
 import { useAuth } from './Context/AuthContext'; 
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from "./Context/AuthContext";
@@ -7,7 +10,20 @@ import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
 
 function App() {
+  const [shoeList,setShoeList]=useState([])
+  const [filteredShoes,setFilteredShoes]=useState([])
+
+  useEffect(()=>{
+    fetch("http://localhost:4000/shoes")
+    .then((res)=>res.json())
+    .then((data)=>{
+      setFilteredShoes(data)
+      setShoeList(data)
+    })
+  },[])
+  
   return (
+   <div>
     <AuthProvider>
       <Routes>
         <Route path="/" element={
@@ -21,8 +37,14 @@ function App() {
         <Route path="/reset-password" element={<PasswordReset />} />
       </Routes>
     </AuthProvider>
+    <ShoeList shoes={filteredShoes}  />
+  </div>
+
   )
-}
+
+
+ }
+
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth()
