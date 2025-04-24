@@ -1,3 +1,5 @@
+import React,{useState} from "react";
+
 function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
   const [showForm, setShowForm] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -134,3 +136,4 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
     </div>
   );
 }
+export default ShoeCard
