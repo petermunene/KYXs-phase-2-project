@@ -285,6 +285,18 @@
       "color": "Blue",
       "deliveryOption": "pickup",
       "totalPrice": 120
+    },
+    {
+      "id": 2,
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 4,
+      "color": "White",
+      "deliveryOption": "delivery",
+      "totalPrice": 480
     }
   ]
 }

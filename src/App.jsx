@@ -40,6 +40,7 @@ function App() {
   
   return (
    <div style={{gap:10,display:"flex",flexDirection:"column", justifyContent:"center",alignContent:"center"}}>
+
     
     {/* <AuthProvider> */}
     <Routes>
@@ -50,6 +51,7 @@ function App() {
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>        
    {/*  </AuthProvider> */}
+
     <ShoeFilter shoes={shoeList} setFilteredShoes={setFilteredShoes}/>
     <ShoeList shoes={filteredShoes}  />
     <Cart 
