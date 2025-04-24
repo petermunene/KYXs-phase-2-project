@@ -8,7 +8,7 @@ function NavBar() {
   return (
     <nav style={styles.navbar}>
       <div style={styles.navContainer}>
-        <h2 style={styles.logo}>ShoeShop</h2>
+        <h2 style={styles.logo}>KYXS</h2>
         <div style={styles.navLinks}>
           <Link style={styles.navLink} to="/">Home</Link>
           <Link style={styles.navLink} to="/login">Login</Link>
