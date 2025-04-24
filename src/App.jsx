@@ -59,6 +59,7 @@ function App() {
     <Cart 
       cart={cart}
       onAddShoeToCart={handleAddToCart}
+      onRemoveShoeFromCart={handleRemoveFromCart}
     />
   </div>
 

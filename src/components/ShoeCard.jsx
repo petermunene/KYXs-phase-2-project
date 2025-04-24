@@ -136,3 +136,5 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
     </div>
   );
 }
+
+export default ShoeCard;
