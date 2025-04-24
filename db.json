@@ -1,6 +1,5 @@
-{"shoes":
-
-[
+{
+  "shoes": [
     {
       "id": 1,
       "name": "Air Max 270",
@@ -201,6 +200,91 @@
       "inStock": true,
       "image": "https://images.asics.com/is/image/asics/1011B443_400_SR_RT_GLB?$sfcc-product$&fmt=jpg&wid=683&hei=512"
     }
+  ],
+  "cart": [
+    {
+      "id": 3,
+      "name": "Nike Dunk Low",
+      "brand": "Nike",
+      "price": 100,
+      "inStock": false,
+      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
+      "quantity": 5,
+      "color": "black",
+      "deliveryOption": "delivery",
+      "totalPrice": 500
+    },
+    {
+      "id": 3,
+      "name": "Nike Dunk Low",
+      "brand": "Nike",
+      "price": 100,
+      "inStock": false,
+      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
+      "quantity": 5,
+      "color": "white",
+      "deliveryOption": "delivery",
+      "totalPrice": 500
+    },
+    {
+      "id": 2,
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "pink",
+      "deliveryOption": "pickup",
+      "totalPrice": 120
+    },
+    {
+      "id": 3,
+      "name": "Nike Dunk Low",
+      "brand": "Nike",
+      "price": 100,
+      "inStock": false,
+      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
+      "quantity": 3,
+      "color": "green",
+      "deliveryOption": "pickup",
+      "totalPrice": 300
+    },
+    {
+      "id": 6,
+      "name": "Ultraboost 22",
+      "brand": "Adidas",
+      "price": 180,
+      "inStock": true,
+      "image": "https://www.badeqshop.co.ke/cdn/shop/products/Ultraboost22_300x300.jpg?v=1639837850",
+      "quantity": 1,
+      "color": "red",
+      "deliveryOption": "pickup",
+      "totalPrice": 180
+    },
+    {
+      "id": 2,
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 2,
+      "color": "blue",
+      "deliveryOption": "pickup",
+      "totalPrice": 240
+    },
+    {
+      "id": 2,
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "Blue",
+      "deliveryOption": "pickup",
+      "totalPrice": 120
+    }
   ]
 }
-  
