@@ -45,6 +45,7 @@ function App() {
   
   return (
    <div style={{gap:10,display:"flex",flexDirection:"column", justifyContent:"center",alignContent:"center"}}>
+    
     <AuthProvider>
       <Routes>
         <Route path="/" element={
