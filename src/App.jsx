@@ -12,6 +12,7 @@ import Cart from "./components/Cart"
 import { shoes } from "../db.json";
 import ShoeFilter from "./components/ShoeCategory";
 
+
 function App() {
   const [shoes, setShoes] = useState({});
   const [shoeList,setShoeList]=useState([])
