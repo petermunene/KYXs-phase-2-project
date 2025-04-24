@@ -5,8 +5,8 @@ function Cart({ cart, onAddShoeToCart, onRemoveShoeFromCart }) {
   const total = cart.reduce((sum, shoe) => sum + shoe.price, 0);
 
   return (
-    <div className="container p-6">
-      <h1 className="text-2xl font-semibold text-[#5C4033] mb-4">Your Cart</h1>
+    <div className="container p-6" style={{ backgroundColor: "#fbe9e7", borderRadius: 16 }}>
+      <h1 className="text-2xl font-semibold text-[#4e342e] mb-4">Your Cart</h1>
 
       <div className="grid gap-4">
         {cart.map((shoe) => (
@@ -20,7 +20,7 @@ function Cart({ cart, onAddShoeToCart, onRemoveShoeFromCart }) {
         ))}
       </div>
 
-      <div className="mt-6 text-xl font-medium text-[#5C4033]">
+      <div className="mt-6 text-xl font-medium text-[#5C4033]" style={{ color: "#5d4037" }}>
         Total: ${total.toFixed(2)}
       </div>
     </div>
