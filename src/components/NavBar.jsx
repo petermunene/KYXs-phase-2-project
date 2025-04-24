@@ -19,7 +19,6 @@ function NavBar({ cartCount }) {
               Logout
             </button>
           ) : null}
-          {/* Cart Link */}
           <Link style={styles.cartLink} to="/cart">
             Cart ({cartCount})
           </Link>
@@ -31,7 +30,7 @@ function NavBar({ cartCount }) {
 
 const styles = {
   navbar: {
-    backgroundColor: '#333',
+    backgroundColor: '#a1887f', // warm brown
     padding: '10px 20px',
     color: 'white',
   },
@@ -43,13 +42,14 @@ const styles = {
   logo: {
     fontSize: '24px',
     fontWeight: 'bold',
+    color: '#3e2723',
   },
   navLinks: {
     display: 'flex',
     gap: '20px',
   },
   navLink: {
-    color: 'white',
+    color: '#efebe9',
     textDecoration: 'none',
     fontSize: '16px',
   },
@@ -58,16 +58,17 @@ const styles = {
     textDecoration: 'none',
     fontSize: '16px',
     fontWeight: 'bold',
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#6d4c41',
     padding: '8px 16px',
-    borderRadius: '4px',
+    borderRadius: '8px',
   },
   logoutButton: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#8d6e63',
     color: 'white',
     border: 'none',
     padding: '8px 16px',
     cursor: 'pointer',
+    borderRadius: '8px',
   },
 };
 

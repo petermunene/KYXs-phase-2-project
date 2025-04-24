@@ -40,20 +40,18 @@ function App() {
   
   return (
    <div style={{gap:10,display:"flex",flexDirection:"column", justifyContent:"center",alignContent:"center"}}>
-   
-    <AuthProvider>
-      <Routes>
-        <Route path="/" element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        } />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/reset-password" element={<PasswordReset />} />
-      </Routes>
-    </AuthProvider>
+
+    
+    {/* <AuthProvider> */}
+    <Routes>
+      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/reset-password" element={<PasswordReset />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>        
+   {/*  </AuthProvider> */}
+
     <ShoeFilter shoes={shoeList} setFilteredShoes={setFilteredShoes}/>
     <ShoeList shoes={filteredShoes}  />
     <Cart 
