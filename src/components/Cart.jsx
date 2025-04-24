@@ -11,7 +11,6 @@ function Cart({ cart }) {
                     onRemoveShoeFromCart={handleRemoveFromCart} />
             </span>
             ))}
-
         </div>
     )
 }
