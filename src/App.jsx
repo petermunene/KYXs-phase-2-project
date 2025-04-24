@@ -10,8 +10,12 @@ import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
 import ShoeFilter from "./components/ShoeCategory";
+
+import NavBar from "./components/NavBar"
+
 import ShoeList from "./components/ShoesList";
 import Cart from "./components/Cart";  // Import Cart page if you have one
+
 
 function App() {
   const [shoeList, setShoeList] = useState([]);
