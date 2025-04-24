@@ -1,5 +1,4 @@
 import React from "react";
-import ShoeCard from "./ShoeCard";
 
 function Cart({ cart }) {
     return (
