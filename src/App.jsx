@@ -10,6 +10,7 @@ import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
 import Cart from "./components/Cart"
 import { shoes } from "../db.json";
+import ShoeFilter from "./components/ShoeCategory";
 
 function App() {
   const [shoes, setShoes] = useState({});
@@ -38,7 +39,7 @@ function App() {
   }
   
   return (
-   <div>
+   <div style={{gap:10,display:"flex",flexDirection:"column", justifyContent:"center",alignContent:"center"}}>
     <AuthProvider>
       <Routes>
         <Route path="/" element={
@@ -52,12 +53,14 @@ function App() {
         <Route path="/reset-password" element={<PasswordReset />} />
       </Routes>
     </AuthProvider>
+    <ShoeFilter shoes={shoeList} setFilteredShoes={setFilteredShoes}/>
     <ShoeList shoes={filteredShoes}  />
     <Cart 
       onAddShoe={handleAddToCart}
       onRemoveShoe={handleRemoveFromCart}
     />
   </div>
+
 
   )
 
