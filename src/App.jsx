@@ -8,10 +8,14 @@ import Home from "./components/Home";
 import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
+import Cart from "./components/Cart"
+import { shoes } from "../db.json";
 
 function App() {
+  const [shoes, setShoes] = useState({});
   const [shoeList,setShoeList]=useState([])
-  const [filteredShoes,setFilteredShoes]=useState([])
+  const [filteredShoes,setFilteredShoes]=useState([]);
+  const [selectedShoe, setSelectedShoe] = useState([]);
 
   useEffect(()=>{
     fetch("http://localhost:4000/shoes")
@@ -21,6 +25,17 @@ function App() {
       setShoeList(data)
     })
   },[])
+
+  function handleAddToCart(shoe) {
+    const alreadyInCart = selectedShoe.some(s => s.id === shoe.id);
+    if (!alreadyInCart) {
+      setSelectedShoe(array => [...array, shoe]);
+    }
+  }
+
+  function handleRemoveFromCart(shoe) {
+    setSelectedShoe(cartItem => cartItem.filter(s => s.id !== shoe.id));
+  }
   
   return (
    <div>
@@ -38,6 +53,10 @@ function App() {
       </Routes>
     </AuthProvider>
     <ShoeList shoes={filteredShoes}  />
+    <Cart 
+      onAddShoe={handleAddToCart}
+      onRemoveShoe={handleRemoveFromCart}
+    />
   </div>
 
   )
