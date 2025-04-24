@@ -1,15 +1,15 @@
 import React from "react";
 import ShoeCard from "./ShoeCard";
 
-function Cart() {
+function Cart({ cart }) {
     return (
         <div className="container">
-            <ul>
-                <span>
-                    <ShoeCard/>
-                    
-                </span>
-            </ul>
+            {cart.map(shoe => (
+            <span key={shoe.id}>
+                <ShoeCard />
+            </span>
+            ))}
+
         </div>
     )
 }

@@ -16,7 +16,7 @@ function App() {
   const [shoes, setShoes] = useState({});
   const [shoeList,setShoeList]=useState([])
   const [filteredShoes,setFilteredShoes]=useState([]);
-  const [selectedShoe, setSelectedShoe] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(()=>{
     fetch("http://localhost:4000/shoes")
@@ -28,14 +28,14 @@ function App() {
   },[])
 
   function handleAddToCart(shoe) {
-    const alreadyInCart = selectedShoe.some(s => s.id === shoe.id);
+    const alreadyInCart = cart.some(s => s.id === shoe.id);
     if (!alreadyInCart) {
-      setSelectedShoe(array => [...array, shoe]);
+      setCart(shoes => [...shoes, shoe]);
     }
   }
 
   function handleRemoveFromCart(shoe) {
-    setSelectedShoe(cartItem => cartItem.filter(s => s.id !== shoe.id));
+    setCart(cartItem => cartItem.filter(s => s.id !== shoe.id));
   }
   
   return (
@@ -56,8 +56,12 @@ function App() {
     <ShoeFilter shoes={shoeList} setFilteredShoes={setFilteredShoes}/>
     <ShoeList shoes={filteredShoes}  />
     <Cart 
-      onAddShoe={handleAddToCart}
-      onRemoveShoe={handleRemoveFromCart}
+      cart={cart}
+      onAddShoeToCart={handleAddToCart}
+    />
+    <ShoeCard 
+      onAddShoeToCart={handleAddToCart}
+      onRemoveShoeFromCart={handleRemoveFromCart}
     />
   </div>
 

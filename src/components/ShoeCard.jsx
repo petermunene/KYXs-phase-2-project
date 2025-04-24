@@ -1,5 +1,5 @@
 import React from "react";
-function ShoeCard({shoe}){
+function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart}){
 
     return(
         <div  id="card"
@@ -18,7 +18,26 @@ function ShoeCard({shoe}){
             <h2>{shoe.name}</h2>
             <b>{shoe.brand}</b>
             <h3>Price: {shoe.price}</h3>
-            <button id="button" style={{backgroundColor:"#644619", borderRadius:10, color:"White",padding:10}}>Add to cart</button>
+            {!onAddShoeToCart ? (
+                <button id="button" style={{backgroundColor:"#644619", borderRadius:10, color:"White",padding:10}}>Add to Cart</button>
+            ) : (
+                <>
+                    <button onClick={() => onRemoveShoeFromCart()} style={{backgroundColor:"Red", borderRadius:10, color:"White",padding:10}}>Remove from Cart</button>
+                    <Link
+                        onClick={alert("Successful Purchase!")}
+                        style={{
+                            backgroundColor:"Green", borderRadius:10, 
+                            color:"White",
+                            padding:10,
+                            display: "inline-block",
+                            textDecoration: "none",
+                            marginLeft: 10
+                            }}>
+                            Buy
+                    </Link>
+                </>
+            )}
+            <button >Add to cart</button>
 
         </div>
     )
