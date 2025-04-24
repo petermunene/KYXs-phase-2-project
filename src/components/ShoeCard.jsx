@@ -1,3 +1,5 @@
+import React from 'react';
+
 function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
   const [showForm, setShowForm] = useState(false);
   const [quantity, setQuantity] = useState(1);
