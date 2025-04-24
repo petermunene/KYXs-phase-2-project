@@ -28,7 +28,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
   };
 
   return (
-    <div style={{ position: "relative", width: 250, margin: 20 }}>
+    <div style={{ position: "relative", width: 270, margin: 20 }}>
       <div
         id="card"
         style={{
@@ -105,7 +105,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
             boxShadow: "0 0 15px rgba(0,0,0,0.3)",
             display: "flex",
             flexDirection: "column",
-            gap: 10
+            gap: 5
           }}
         >
           <img src={shoe.image} height={200} />
