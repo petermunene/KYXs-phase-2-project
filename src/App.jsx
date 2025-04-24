@@ -64,23 +64,7 @@ function App() {
       cart={cart}
       onAddShoeToCart={handleAddToCart}
     />
-    
-    
   </div>
-
-
-  )
-
-
-  // Function to add items to cart
-  const addToCart = (shoe) => {
-    setCart((prevCart) => [...prevCart, shoe]);
-  };
-
-  // Function to remove items from cart
-  const removeFromCart = (shoeId) => {
-    setCart(cart.filter(item => item.id !== shoeId));
-  };
 
   return (
     <div style={{ gap: 10, display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center" }}>
