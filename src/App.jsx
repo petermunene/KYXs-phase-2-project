@@ -1,20 +1,15 @@
-// src/App.jsx
-
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from "./Context/AuthContext";
 import { useAuth } from './Context/AuthContext';
-import NavBar from './components/NavBar';  // Import NavBar here
+import NavBar from './components/NavBar';
 import Home from "./components/Home";
 import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
 import ShoeFilter from "./components/ShoeCategory";
-
-import NavBar from "./components/NavBar"
-
 import ShoeList from "./components/ShoesList";
-import Cart from "./components/Cart";  // Import Cart page if you have one
+import Cart from "./components/Cart";
 
 
 function App() {
