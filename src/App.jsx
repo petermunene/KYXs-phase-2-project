@@ -67,30 +67,6 @@ function App() {
       onRemoveShoeFromCart={handleRemoveFromCart}
     />
   </div>
-
-  return (
-    <div style={{ gap: 10, display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center" }}>
-      <AuthProvider>
-        <NavBar cartCount={cart.length} />  {/* Pass cart count to NavBar */}
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home addToCart={addToCart} />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-          <Route path="/reset-password" element={<PasswordReset />} />
-          <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />  {/* Cart page */}
-        </Routes>
-      </AuthProvider>
-      <ShoeFilter shoes={shoeList} setFilteredShoes={setFilteredShoes} />
-      <ShoeList shoes={filteredShoes} addToCart={addToCart} />
-    </div>
   );
 }
 
