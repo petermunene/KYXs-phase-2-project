@@ -2,17 +2,17 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Home from "./Home";
-import Cart from "./Cart";
-import ShoeCategory from "./ShoeCategory";
-import ShoeList from "./ShoeList";
-import ErrorPage from "./ErrorPage"; // Optional error fallback page
+import Home from "../src/components/Home";
+import Cart from "../src/components/Cart";
+import ShoeCategory from "../src/components/ShoeCategory";
+import ShoesList from "../src/components/ShoesList";
+/* import ErrorPage from "./ErrorPage";  */
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />, // Optional error handler
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/list",
-        element: <ShoeList />,
+        element: <ShoesList />,
       },
     ],
   },
