@@ -59,10 +59,6 @@ function App() {
       cart={cart}
       onAddShoeToCart={handleAddToCart}
     />
-    <ShoeCard 
-      onAddShoeToCart={handleAddToCart}
-      onRemoveShoeFromCart={handleRemoveFromCart}
-    />
   </div>
 
 

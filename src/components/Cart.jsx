@@ -6,7 +6,9 @@ function Cart({ cart }) {
         <div className="container">
             {cart.map(shoe => (
             <span key={shoe.id}>
-                <ShoeCard />
+                <ShoeCard 
+                    onAddShoeToCart={handleAddToCart}
+                    onRemoveShoeFromCart={handleRemoveFromCart} />
             </span>
             ))}
 

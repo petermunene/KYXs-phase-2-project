@@ -23,7 +23,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart}){
             ) : (
                 <>
                     <button onClick={() => onRemoveShoeFromCart()} style={{backgroundColor:"Red", borderRadius:10, color:"White",padding:10}}>Remove from Cart</button>
-                    <Link
+                    <button
                         onClick={alert("Successful Purchase!")}
                         style={{
                             backgroundColor:"Green", borderRadius:10, 
@@ -34,7 +34,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart}){
                             marginLeft: 10
                             }}>
                             Buy
-                    </Link>
+                    </button>
                 </>
             )}
             <button >Add to cart</button>
