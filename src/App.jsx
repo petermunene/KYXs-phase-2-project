@@ -20,12 +20,53 @@ function App() {
 
   useEffect(() => {
     fetch("http://localhost:4000/shoes")
-      .then((res) => res.json())
-      .then((data) => {
-        setFilteredShoes(data);
-        setShoeList(data);
-      });
-  }, []);
+
+    .then((res)=>res.json())
+    .then((data)=>{
+      setFilteredShoes(data)
+      setShoeList(data)
+    })
+  },[])
+
+  function handleAddToCart(shoe) {
+    const alreadyInCart = cart.some(s => s.id === shoe.id);
+    if (!alreadyInCart) {
+      setCart(shoes => [...shoes, shoe]);
+    }
+  }
+
+  function handleRemoveFromCart(shoe) {
+    setCart(cartItem => cartItem.filter(s => s.id !== shoe.id));
+  }
+  
+  return (
+   <div style={{gap:10,display:"flex",flexDirection:"column", justifyContent:"center",alignContent:"center"}}>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        } />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/reset-password" element={<PasswordReset />} />
+      </Routes>
+    </AuthProvider>
+    <ShoeFilter shoes={shoeList} setFilteredShoes={setFilteredShoes}/>
+    <ShoeList shoes={filteredShoes}  />
+    <Cart 
+      cart={cart}
+      onAddShoeToCart={handleAddToCart}
+    />
+    
+    
+  </div>
+
+
+  )
+
 
   // Function to add items to cart
   const addToCart = (shoe) => {
