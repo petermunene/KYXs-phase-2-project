@@ -1,8 +1,10 @@
+// src/components/NavBar.jsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 
-function NavBar() {
+function NavBar({ cartCount }) {  // Accept cartCount as a prop
   const { user, logout } = useAuth();
 
   return (
@@ -19,6 +21,10 @@ function NavBar() {
               Logout
             </button>
           ) : null}
+          {/* Cart Link */}
+          <Link style={styles.cartLink} to="/cart">
+            Cart ({cartCount})
+          </Link>
         </div>
       </div>
     </nav>
@@ -48,6 +54,15 @@ const styles = {
     color: 'white',
     textDecoration: 'none',
     fontSize: '16px',
+  },
+  cartLink: {
+    color: 'white',
+    textDecoration: 'none',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: '#e74c3c',
+    padding: '8px 16px',
+    borderRadius: '4px',
   },
   logoutButton: {
     backgroundColor: '#e74c3c',
