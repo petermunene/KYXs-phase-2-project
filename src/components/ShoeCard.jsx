@@ -28,7 +28,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
   };
 
   return (
-    <div style={{ position: "relative", width: 270, margin: 20 }}>
+    <div style={{ position: "relative", width: 250, margin: 20 }}>
       <div
         id="card"
         style={{
@@ -136,3 +136,4 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
     </div>
   );
 }
+export default ShoeCard
