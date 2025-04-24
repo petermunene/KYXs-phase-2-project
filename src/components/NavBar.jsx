@@ -1,10 +1,8 @@
-// src/components/NavBar.jsx
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 
-function NavBar({ cartCount }) {  // Accept cartCount as a prop
+function NavBar({ cartCount }) {
   const { user, logout } = useAuth();
 
   return (
