@@ -1,92 +1,119 @@
+
 import React, { useState } from 'react';
 
-function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
+function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart, inCart = false }) {
   const [showForm, setShowForm] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [deliveryOption, setDeliveryOption] = useState("pickup");
 
-  const handleSubmit = (e) => {
-    alert("Submission Successful!");
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const order = {
-      ...shoe,
-      quantity,
-      color,
-      deliveryOption,
-      totalPrice: shoe.price * quantity
-    };
+    
+    try {
+      const order = {
+        ...shoe,
+        quantity,
+        color,
+        deliveryOption,
+        totalPrice: shoe.price * quantity
+      };
 
-    fetch("http://localhost:4000/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(order)
-    }).then(() => {
+      await onAddShoeToCart(order);
       
       setShowForm(false);
-    });
+      setQuantity(1);
+      setColor("");
+      setDeliveryOption("pickup");
+      
+
+    } catch (error) {
+      console.error("Purchase error:", error);
+      alert("Failed to add item to cart. Please try again.");
+    }
   };
 
   return (
-    <div style={{ position: "relative", width: 350, margin: 20 }}>
+    <div style={{ 
+      position: "relative", 
+      width: 350, 
+      margin: 20,
+      transition: 'transform 0.5s ease'
+    }}>
       <div
-        id="card"
+        className="shoe-card"
         style={{
           display: "flex",
           flexDirection: "column",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-          padding: 10,
+          padding: "10px",
           backgroundColor: "white",
-          borderRadius: 10,
-          justifyContent: "space-between"
+          borderRadius: "10px",
+          justifyContent: "space-between",
+          height: "100%"
         }}
       >
-        <img src={shoe.image} height={250} />
-        <h2>{shoe.name}</h2>
-        <b>{shoe.brand}</b>
-        <h3>Price: ${shoe.price}</h3>
+        <img 
+          src={shoe.image} 
+          alt={shoe.name} 
+          style={{ 
+            height: "250px", 
+            objectFit: "cover",
+            borderRadius: "8px" 
+          }} 
+        />
+        <h2 style={{ margin: "10px 0" }}>{shoe.name}</h2>
+        <b style={{ color: "#666" }}>{shoe.brand}</b>
+        <h3 style={{ color: "#885a04", margin: "10px 0" }}>
+          Price: ${shoe.price}
+        </h3>
 
-        {!onAddShoeToCart ? (
+        {!inCart ? (
           <button
-            id="button"
             onClick={() => setShowForm(true)}
             style={{
               backgroundColor: "#644619",
-              borderRadius: 10,
+              borderRadius: "10px",
               color: "white",
-              padding: 10
+              padding: "10px",
+              border: "none",
+              cursor: "pointer",
+              transition: "transform 0.3s ease"
             }}
           >
             Add to cart
           </button>
         ) : (
-          <>
+          <div style={{ display: "flex", gap: "10px" }}>
             <button
-              onClick={() => onRemoveShoeFromCart()}
+              onClick={() => onRemoveShoeFromCart(shoe.id)}
               style={{
-                backgroundColor: "red",
-                borderRadius: 10,
+                backgroundColor: "#dc3545",
+                borderRadius: "10px",
                 color: "white",
-                padding: 10
+                padding: "10px",
+                border: "none",
+                cursor: "pointer",
+                flex: 1
               }}
             >
-              Remove from Cart
+              Remove
             </button>
             <button
-              onClick={() => alert("Successful Purchase!")}
+              onClick={() => alert("Purchase Successful!")}
               style={{
-                backgroundColor: "green",
-                borderRadius: 10,
+                backgroundColor: "#28a745",
+                borderRadius: "10px",
                 color: "white",
-                padding: 10,
-                display: "inline-block",
-                textDecoration: "none",
-                marginLeft: 10
+                padding: "10px",
+                border: "none",
+                cursor: "pointer",
+                flex: 1
               }}
             >
-              Buy
+              Buy Now
             </button>
-          </>
+          </div>
         )}
       </div>
 
@@ -97,40 +124,116 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
             position: "absolute",
             top: 0,
             left: 0,
+            right: 0,
             zIndex: 10,
             background: "#fff",
-            width: "100%",
-            padding: 20,
-            borderRadius: 20,
+            padding: "20px",
+            borderRadius: "10px",
             boxShadow: "0 0 15px rgba(0,0,0,0.3)",
             display: "flex",
             flexDirection: "column",
-            gap: 10
+            gap: "10px"
           }}
         >
-          <img src={shoe.image} height={200} />
-          <div>
-            <button type="button" onClick={() => setQuantity((q) => Math.max(1, q - 1))}>-</button>
+          <img 
+            src={shoe.image} 
+            alt={shoe.name} 
+            style={{ 
+              height: "200px", 
+              objectFit: "cover",
+              borderRadius: "8px" 
+            }} 
+          />
+          
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <button 
+              type="button" 
+              onClick={() => setQuantity(q => Math.max(1, q - 1))}
+              style={{
+                padding: "5px 10px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                cursor: "pointer"
+              }}
+            >
+              -
+            </button>
             <span style={{ margin: "0 10px" }}>{quantity}</span>
-            <button type="button" onClick={() => setQuantity((q) => q + 1)}>+</button>
+            <button 
+              type="button" 
+              onClick={() => setQuantity(q => q + 1)}
+              style={{
+                padding: "5px 10px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                cursor: "pointer"
+              }}
+            >
+              +
+            </button>
           </div>
+
           <input
+            required
+            type="text"
             value={color}
             onChange={(e) => setColor(e.target.value)}
             placeholder="Preferred Color"
+            style={{
+              padding: "8px",
+              borderRadius: "5px",
+              border: "1px solid #ddd"
+            }}
           />
+
           <select
             value={deliveryOption}
             onChange={(e) => setDeliveryOption(e.target.value)}
+            style={{
+              padding: "8px",
+              borderRadius: "5px",
+              border: "1px solid #ddd"
+            }}
           >
             <option value="pickup">Pick up</option>
             <option value="delivery">Delivery</option>
           </select>
-          <p>Total: ${shoe.price * quantity}</p>
-          <button type="submit">Submit Order</button>
-          <button type="button" onClick={() => setShowForm(false)}>
-            Cancel
-          </button>
+
+          <p style={{ fontWeight: "bold", color: "#333" }}>
+            Total: ${(shoe.price * quantity).toFixed(2)}
+          </p>
+
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button
+              type="submit"
+              style={{
+                backgroundColor: "#644619",
+                color: "white",
+                padding: "10px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                flex: 1
+              }}
+            >
+              Confirm Order
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowForm(false)}
+              style={{
+                backgroundColor: "#6c757d",
+                color: "white",
+                padding: "10px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                flex: 1
+              }}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       )}
     </div>

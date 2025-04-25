@@ -1,28 +1,27 @@
-import React from "react";
-import ShoeCard from "./ShoeCard";
+import { useEffect, useState } from 'react';
+import ShoeCard from './ShoeCard';
 
-function Cart({ cart, onAddShoeToCart, onRemoveShoeFromCart }) {
-  const total = cart.reduce((sum, shoe) => sum + shoe.price, 0);
+function Cart({ cart, onRemoveShoeFromCart }) {
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    setCartItems(cart);
+  }, [cart]);
+
+  const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
-    <div className="container p-6" style={{ backgroundColor: "#fbe9e7", borderRadius: 16 }}>
-      <h1 className="text-2xl font-semibold text-[#4e342e] mb-4">Your Cart</h1>
-
+    <div className="container p-6">
+      <h1 className="text-2xl font-semibold mb-4">Your Cart</h1>
       <div className="grid gap-4">
-        {cart.map((shoe) => (
-          <span key={shoe.id}>
-            <ShoeCard
-              shoe={shoe}
-              onAddShoeToCart={onAddShoeToCart}
-              onRemoveShoeFromCart={onRemoveShoeFromCart}
-            />
-          </span>
+        {cartItems.map(item => (
+          <div key={item.id} className="cart-item">
+            <ShoeCard shoe={item} inCart={true} onRemoveShoeFromCart={onRemoveShoeFromCart}  />
+            
+          </div>
         ))}
       </div>
-
-      <div className="mt-6 text-xl font-medium text-[#5C4033]" style={{ color: "#5d4037" }}>
-        Total: ${total.toFixed(2)}
-      </div>
+      
     </div>
   );
 }

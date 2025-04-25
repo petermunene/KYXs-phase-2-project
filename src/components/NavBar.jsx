@@ -1,25 +1,58 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 
-function NavBar({ cartCount }) {
+export default function NavBar({ cartCount }) {
   const { user, logout } = useAuth();
 
   return (
-    <nav style={styles.navbar}>
-      <div style={styles.navContainer}>
-        <h2 style={styles.logo}>KYXS</h2>
-        <div style={styles.navLinks}>
-          <Link style={styles.navLink} to="/">Home</Link>
-          <Link style={styles.navLink} to="/login">Login</Link>
-          <Link style={styles.navLink} to="/signup">Sign Up</Link>
-          {user && <Link style={styles.navLink} to="/profile">Profile</Link>}
-          {user ? (
-            <button onClick={logout} style={styles.logoutButton}>
+    <nav style={{
+      backgroundColor: '#a1887f',
+      padding: '10px 20px',
+      color: 'white',
+      position: 'fixed',
+     
+      top: 0,
+      
+    }}>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+       
+        margin: '0 auto',
+        width:"100%"
+      }}>
+        <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#3e2723' }}>KYXS</h2>
+        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+          <Link to="/" style={{ color: '#efebe9', textDecoration: 'none' }}>Home</Link>
+          {!user && <Link to="/login" style={{ color: '#efebe9', textDecoration: 'none' }}>Login</Link>}
+          {!user && <Link to="/signup" style={{ color: '#efebe9', textDecoration: 'none' }}>Sign Up</Link>}
+          {user && <Link to="/profile" style={{ color: '#efebe9', textDecoration: 'none' }}>Profile</Link>}
+          {user && (
+            <button 
+              onClick={logout} 
+              style={{
+                backgroundColor: '#8d6e63',
+                color: 'white',
+                border: 'none',
+                padding: '8px 16px',
+                cursor: 'pointer',
+                borderRadius: '8px'
+              }}
+            >
               Logout
             </button>
-          ) : null}
-          <Link style={styles.cartLink} to="/cart">
+          )}
+          <Link 
+            to="/cart" 
+            style={{
+              backgroundColor: '#6d4c41',
+              color: 'white',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              textDecoration: 'none'
+            }}
+          >
             Cart ({cartCount})
           </Link>
         </div>
@@ -27,49 +60,3 @@ function NavBar({ cartCount }) {
     </nav>
   );
 }
-
-const styles = {
-  navbar: {
-    backgroundColor: '#a1887f', // warm brown
-    padding: '10px 20px',
-    color: 'white',
-  },
-  navContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  logo: {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: '#3e2723',
-  },
-  navLinks: {
-    display: 'flex',
-    gap: '20px',
-  },
-  navLink: {
-    color: '#efebe9',
-    textDecoration: 'none',
-    fontSize: '16px',
-  },
-  cartLink: {
-    color: 'white',
-    textDecoration: 'none',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    backgroundColor: '#6d4c41',
-    padding: '8px 16px',
-    borderRadius: '8px',
-  },
-  logoutButton: {
-    backgroundColor: '#8d6e63',
-    color: 'white',
-    border: 'none',
-    padding: '8px 16px',
-    cursor: 'pointer',
-    borderRadius: '8px',
-  },
-};
-
-export default NavBar;
