@@ -54,8 +54,10 @@ function App() {
           <Route path="/" element={
             <ProtectedRoute>
               <Home 
+                allShoes={shoeList}
                 shoes={filteredShoes}
                 onAddShoeToCart={handleAddToCart}
+                setFilteredShoes={setFilteredShoes}
               />
             </ProtectedRoute>
           } />
