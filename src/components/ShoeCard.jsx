@@ -62,14 +62,18 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
             <button
               onClick={() => onRemoveShoeFromCart(shoe)}
               style={{
-                backgroundColor: "red",
+                backgroundColor: "black",
                 borderRadius: 10,
                 color: "white",
-                padding: 10
+                padding: 5,
+                fontFamily:'sans-serif',
+                fontSize:20,
+                marginLeft:10
               }}
             >
-              Remove from Cart
+             🚮 Remove from Cart
             </button>
+            <br></br>
             <button
               onClick={() => alert("Successful Purchase!")}
               style={{
