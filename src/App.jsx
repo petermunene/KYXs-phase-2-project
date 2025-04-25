@@ -1,35 +1,86 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AuthProvider, useAuth } from "./Context/AuthContext"; // Added useAuth import
+import NavBar from './components/NavBar';
+import Home from "./components/Home";
+import Login from "./components/Auth/Login";
+import SignUp from "./components/Auth/SignUp";
+import PasswordReset from "./components/Auth/PasswordReset";
+import Cart from "./components/Cart";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [shoeList, setShoeList] = useState([]);
+  const [filteredShoes, setFilteredShoes] = useState([]);
+  const [cart, setCart] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    fetch("http://localhost:4000/shoes")
+      .then((res) => res.json())
+      .then((data) => {
+        setFilteredShoes(data);
+        setShoeList(data);
+      });
+  }, []);
+
+  function handleAddToCart(order) {
+    setCart(prevCart => [...prevCart, order]);
+  }
+
+  function handleRemoveFromCart(shoeToRemove) {
+    setCart(prevCart => prevCart.filter(shoe => shoe.id !== shoeToRemove.id));
+    fetch(`http://localhost:4000/cart/${shoeToRemove.id}`, {
+      method: "DELETE"
+    });
+  }
+
+  // Check if current route is authentication page
+  const isAuthPage = ['/login', '/signup', '/reset-password'].includes(location.pathname);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <AuthProvider>
+      {!isAuthPage && <NavBar cartCount={cart.length} />}
+      
+      <div style={{ padding: isAuthPage ? '0' : '20px' }}>
+        <Routes>
+          {/* Authentication Routes (no navbar) */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/reset-password" element={<PasswordReset />} />
+          
+          {/* Main App Routes (protected, with navbar) */}
+          <Route path="/" element={
+            <ProtectedRoute>
+              <Home 
+                shoes={filteredShoes}
+                onAddShoeToCart={handleAddToCart}
+              />
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/cart" element={
+            <ProtectedRoute>
+              <Cart
+                cart={cart}
+                onRemoveShoeFromCart={handleRemoveFromCart}
+              />
+            </ProtectedRoute>
+          } />
+          
+          {/* Redirects */}
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="*" element={<ErrorPage errorMessage="Page not found" />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </AuthProvider>
+  );
 }
 
-export default App
+// Move ProtectedRoute outside the App component
+function ProtectedRoute({ children }) {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/login" replace />;
+}
+
+export default App;

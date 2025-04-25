@@ -1,6 +1,7 @@
-[
+{
+  "shoes": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Air Max 270",
       "brand": "Nike",
       "price": 150,
@@ -8,7 +9,7 @@
       "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Air Force 1",
       "brand": "Nike",
       "price": 120,
@@ -16,7 +17,7 @@
       "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Nike Dunk Low",
       "brand": "Nike",
       "price": 100,
@@ -24,7 +25,7 @@
       "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Nike Pegasus 39",
       "brand": "Nike",
       "price": 130,
@@ -32,7 +33,7 @@
       "image": "https://images.pexels.com/photos/6540973/pexels-photo-6540973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Nike React Infinity",
       "brand": "Nike",
       "price": 160,
@@ -40,7 +41,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReC6biA9PhezJav65Va8VQ7Vu5h5KTCsyNgA&s"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Ultraboost 22",
       "brand": "Adidas",
       "price": 180,
@@ -48,7 +49,7 @@
       "image": "https://www.badeqshop.co.ke/cdn/shop/products/Ultraboost22_300x300.jpg?v=1639837850"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Adidas Superstar",
       "brand": "Adidas",
       "price": 90,
@@ -56,7 +57,7 @@
       "image": "https://m.media-amazon.com/images/I/716Inzq-uoL._AC_SL1500_.jpg"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "NMD_R1",
       "brand": "Adidas",
       "price": 140,
@@ -64,7 +65,7 @@
       "image": "https://cdn-images.farfetch-contents.com/17/07/62/87/17076287_34334629_600.jpg"
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Adizero Boston 10",
       "brand": "Adidas",
       "price": 110,
@@ -72,7 +73,7 @@
       "image": "https://www.badeqshop.co.ke/cdn/shop/files/boston10blue.jpg?v=1713526376"
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Forum Low",
       "brand": "Adidas",
       "price": 100,
@@ -80,7 +81,7 @@
       "image": "https://assets.adidas.com/images/w_1880,f_auto,q_auto/09c5ea6df1bd4be6baaaac5e003e7047_9366/FY7756_01_standard.jpg"
     },
     {
-      "id": 11,
+      "id": "11",
       "name": "Chuck Taylor All Star",
       "brand": "Converse",
       "price": 65,
@@ -88,7 +89,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7L3bnj7o4toEGEl0cqp2c5xvinC0uTEZ-Mg&s"
     },
     {
-      "id": 12,
+      "id": "12",
       "name": "Run Star Hike",
       "brand": "Converse",
       "price": 110,
@@ -96,7 +97,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2XuyBo_8Ye06b0FVHVcgfYvw9DsMUzrHjJw&s"
     },
     {
-      "id": 13,
+      "id": "13",
       "name": "Chuck 70",
       "brand": "Converse",
       "price": 85,
@@ -104,7 +105,7 @@
       "image": "https://www.converse.com/dw/image/v2/BCZC_PRD/on/demandware.static/-/Sites-cnv-master-catalog/default/dw18ec20b2/images/a_08/162050C_A_08X1.jpg?sw=406"
     },
     {
-      "id": 14,
+      "id": "14",
       "name": "One Star",
       "brand": "Converse",
       "price": 75,
@@ -112,7 +113,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzHIAQpEXkW_o_4Xt0UavZG13pvHrZzAS6kg&s"
     },
     {
-      "id": 15,
+      "id": "15",
       "name": "Weapon CX",
       "brand": "Converse",
       "price": 95,
@@ -120,7 +121,7 @@
       "image": "https://www.converse.com/dw/image/v2/BJJF_PRD/on/demandware.static/-/Sites-cnv-master-catalog-we/default/dw287d3a4d/images/a_107/171605C_A_107X1.jpg?sw=964"
     },
     {
-      "id": 16,
+      "id": "16",
       "name": "Classic Clog",
       "brand": "Crocs",
       "price": 50,
@@ -128,7 +129,7 @@
       "image": "https://www.peekaboo.ke/cdn/shop/products/Crocs_Kids_Classic_Clog_Shoes_-_CC0265.png?v=1673689500"
     },
     {
-      "id": 17,
+      "id": "17",
       "name": "Echo Clog",
       "brand": "Crocs",
       "price": 70,
@@ -136,7 +137,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyj1ScHmn9CCKjKAFd7TIW5WncEXExd8vnxQ&s"
     },
     {
-      "id": 18,
+      "id": "18",
       "name": "Classic All-Terrain",
       "brand": "Crocs",
       "price": 60,
@@ -144,7 +145,7 @@
       "image": "https://m.media-amazon.com/images/I/71MsAYMRclL._AC_UY900_.jpg"
     },
     {
-      "id": 19,
+      "id": "19",
       "name": "LiteRide Clog",
       "brand": "Crocs",
       "price": 65,
@@ -152,7 +153,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXU6HMkhL_vkMvz0rFPIoAu1j_mM95e-UZfg&s"
     },
     {
-      "id": 20,
+      "id": "20",
       "name": "Classic Crush",
       "brand": "Crocs",
       "price": 75,
@@ -160,7 +161,7 @@
       "image": "https://d18xazalilbrpm.cloudfront.net/media/catalog/product/cache/15e481ff6e43739ce3dce2e015d41790/c/r/cr-207521_2y2_alt100.jpg"
     },
     {
-      "id": 21,
+      "id": "21",
       "name": "Gel-Kayano 30",
       "brand": "Asics",
       "price": 160,
@@ -168,7 +169,7 @@
       "image": "https://hips.hearstapps.com/hmg-prod/images/asics-gel-kayano-30-64a6d90cd1f08.jpg"
     },
     {
-      "id": 22,
+      "id": "22",
       "name": "GT-2000 11",
       "brand": "Asics",
       "price": 140,
@@ -176,7 +177,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThEO3l2RQXDNBgm6fGZk3XaWyekgNlYp9q9Q&s"
     },
     {
-      "id": 23,
+      "id": "23",
       "name": "Gel-Nimbus 25",
       "brand": "Asics",
       "price": 170,
@@ -184,7 +185,7 @@
       "image": "https://images.asics.com/is/image/asics/1011B547_400_SR_RT_GLB?$zoom$"
     },
     {
-      "id": 24,
+      "id": "24",
       "name": "Novablast 3",
       "brand": "Asics",
       "price": 130,
@@ -192,12 +193,134 @@
       "image": "https://images.asics.com/is/image/asics/1011B458_001_SR_RT_GLB?$zoom$"
     },
     {
-      "id": 25,
+      "id": "25",
       "name": "Magic Speed 2",
       "brand": "Asics",
       "price": 150,
       "inStock": true,
       "image": "https://images.asics.com/is/image/asics/1011B443_400_SR_RT_GLB?$sfcc-product$&fmt=jpg&wid=683&hei=512"
     }
+  ],
+  "cart": [
+    {
+      "id": "3",
+      "name": "Nike Dunk Low",
+      "brand": "Nike",
+      "price": 100,
+      "inStock": false,
+      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
+      "quantity": 5,
+      "color": "black",
+      "deliveryOption": "delivery",
+      "totalPrice": 500
+    },
+    {
+      "id": "3",
+      "name": "Nike Dunk Low",
+      "brand": "Nike",
+      "price": 100,
+      "inStock": false,
+      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
+      "quantity": 5,
+      "color": "white",
+      "deliveryOption": "delivery",
+      "totalPrice": 500
+    },
+    {
+      "id": "3",
+      "name": "Nike Dunk Low",
+      "brand": "Nike",
+      "price": 100,
+      "inStock": false,
+      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
+      "quantity": 3,
+      "color": "green",
+      "deliveryOption": "pickup",
+      "totalPrice": 300
+    },
+    {
+      "id": "6",
+      "name": "Ultraboost 22",
+      "brand": "Adidas",
+      "price": 180,
+      "inStock": true,
+      "image": "https://www.badeqshop.co.ke/cdn/shop/products/Ultraboost22_300x300.jpg?v=1639837850",
+      "quantity": 1,
+      "color": "red",
+      "deliveryOption": "pickup",
+      "totalPrice": 180
+    },
+    {
+      "id": "2",
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "Blue",
+      "deliveryOption": "pickup",
+      "totalPrice": 120
+    },
+    {
+      "id": "2",
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 4,
+      "color": "White",
+      "deliveryOption": "delivery",
+      "totalPrice": 480
+    },
+    {
+      "id": "18",
+      "name": "Classic All-Terrain",
+      "brand": "Crocs",
+      "price": 60,
+      "inStock": true,
+      "image": "https://m.media-amazon.com/images/I/71MsAYMRclL._AC_UY900_.jpg",
+      "quantity": 2,
+      "color": "white",
+      "deliveryOption": "pickup",
+      "totalPrice": 120
+    },
+    {
+      "id": "1",
+      "name": "Air Max 270",
+      "brand": "Nike",
+      "price": 150,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 2,
+      "color": "RED",
+      "deliveryOption": "pickup",
+      "totalPrice": 300
+    },
+    {
+      "id": "2",
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "black",
+      "deliveryOption": "pickup",
+      "totalPrice": 120
+    },
+    {
+      "id": "2",
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "black",
+      "deliveryOption": "pickup",
+      "totalPrice": 120
+    }
   ]
-  
+}
