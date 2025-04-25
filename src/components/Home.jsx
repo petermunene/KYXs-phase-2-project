@@ -1,12 +1,15 @@
 import { useAuth } from '../Context/AuthContext';
+import ShoeFilter from './ShoeCategory';
+import ShoeList from './ShoesList';
 
-export default function Home() {
-  const { user, logout } = useAuth()
+export default function Home({ shoes, onAddShoeToCart }) {
+  const { user, logout } = useAuth();
 
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <h1>Welcome {user?.email}</h1>
-      <button onClick={logout}>Logout</button>
+      <ShoeFilter shoes={shoes} setFilteredShoes={() => {}} />
+      <ShoeList shoes={shoes} onAddShoeToCart={onAddShoeToCart} />
     </div>
-  )
+  );
 }

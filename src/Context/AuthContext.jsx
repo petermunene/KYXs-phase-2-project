@@ -8,29 +8,43 @@ export function AuthProvider({ children }) {
   const navigate = useNavigate()
 
   const login = async (email, password) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 500))
-    setUser({ email })
-    navigate('/')
-  }
+    try {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      if (email === "test@example.com" && password === "password") {
+        setUser({ email });
+        navigate('/');
+      } else {
+        throw new Error("Invalid credentials");
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const signup = async (userData) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 500))
-    setUser({ email: userData.email })
-    navigate('/')
-  }
+    try {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      if (userData.email && userData.password) {
+        setUser({ email: userData.email });
+        navigate('/');
+      } else {
+        throw new Error("Registration failed");
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const logout = () => {
-    setUser(null)
-    navigate('/login')
-  }
+    setUser(null);
+    navigate('/login');
+  };
 
   return (
     <AuthContext.Provider value={{ user, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => useContext(AuthContext);
