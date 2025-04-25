@@ -7,7 +7,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
   const [deliveryOption, setDeliveryOption] = useState("pickup");
 
   const handleSubmit = (e) => {
-    alert("Submission Successful!");
+    alert("submition succesful!")
     e.preventDefault();
     const order = {
       ...shoe,
@@ -22,33 +22,31 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(order)
     }).then(() => {
-      
+      if (onAddShoeToCart) {
+        onAddShoeToCart(order);
+      }
       setShowForm(false);
     });
   };
 
   return (
     <div style={{ position: "relative", width: 350, margin: 20 }}>
-      <div
-        id="card"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-          padding: 10,
-          backgroundColor: "white",
-          borderRadius: 10,
-          justifyContent: "space-between"
-        }}
-      >
-        <img src={shoe.image} height={250} />
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+        padding: 10,
+        backgroundColor: "white",
+        borderRadius: 10,
+        justifyContent: "space-between"
+      }}>
+        <img src={shoe.image} alt={shoe.name} height={250} />
         <h2>{shoe.name}</h2>
         <b>{shoe.brand}</b>
-        <h3>Price: ${shoe.price}</h3>
+        <h3>Price: ${shoe.price}{shoe.quantity && ` x ${shoe.quantity}`}</h3>
 
-        {!onAddShoeToCart ? (
+        {onAddShoeToCart ? (
           <button
-            id="button"
             onClick={() => setShowForm(true)}
             style={{
               backgroundColor: "#644619",
@@ -62,7 +60,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
         ) : (
           <>
             <button
-              onClick={() => onRemoveShoeFromCart()}
+              onClick={() => onRemoveShoeFromCart(shoe)}
               style={{
                 backgroundColor: "red",
                 borderRadius: 10,
@@ -79,8 +77,6 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
                 borderRadius: 10,
                 color: "white",
                 padding: 10,
-                display: "inline-block",
-                textDecoration: "none",
                 marginLeft: 10
               }}
             >
@@ -91,28 +87,25 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
       </div>
 
       {showForm && (
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 10,
-            background: "#fff",
-            width: "100%",
-            padding: 20,
-            borderRadius: 20,
-            boxShadow: "0 0 15px rgba(0,0,0,0.3)",
-            display: "flex",
-            flexDirection: "column",
-            gap: 10
-          }}
-        >
-          <img src={shoe.image} height={200} />
+        <form onSubmit={handleSubmit} style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 10,
+          background: "#fff",
+          width: "100%",
+          padding: 20,
+          borderRadius: 20,
+          boxShadow: "0 0 15px rgba(0,0,0,0.3)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 10
+        }}>
+          <img src={shoe.image} alt={shoe.name} height={200} />
           <div>
-            <button type="button" onClick={() => setQuantity((q) => Math.max(1, q - 1))}>-</button>
+            <button type="button" onClick={() => setQuantity(q => Math.max(1, q - 1))}>-</button>
             <span style={{ margin: "0 10px" }}>{quantity}</span>
-            <button type="button" onClick={() => setQuantity((q) => q + 1)}>+</button>
+            <button type="button" onClick={() => setQuantity(q => q + 1)}>+</button>
           </div>
           <input
             value={color}

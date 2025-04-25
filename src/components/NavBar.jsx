@@ -19,6 +19,7 @@ function NavBar({ cartCount }) {
               Logout
             </button>
           ) : null}
+          {/* Cart Link */}
           <Link style={styles.cartLink} to="/cart">
             Cart ({cartCount})
           </Link>
