@@ -26,6 +26,7 @@ function App() {
 
   function handleAddToCart(order) {
     setCart(prevCart => [...prevCart, order]);
+    
   }
 
   function handleRemoveFromCart(shoeToRemove) {

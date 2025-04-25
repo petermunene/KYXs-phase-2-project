@@ -203,88 +203,16 @@
   ],
   "cart": [
     {
-      "id": "3",
-      "name": "Nike Dunk Low",
+      "id": "1",
+      "name": "Air Max 270",
       "brand": "Nike",
-      "price": 100,
-      "inStock": false,
-      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
-      "quantity": 5,
-      "color": "black",
-      "deliveryOption": "delivery",
-      "totalPrice": 500
-    },
-    {
-      "id": "3",
-      "name": "Nike Dunk Low",
-      "brand": "Nike",
-      "price": 100,
-      "inStock": false,
-      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
-      "quantity": 5,
-      "color": "white",
-      "deliveryOption": "delivery",
-      "totalPrice": 500
-    },
-    {
-      "id": "3",
-      "name": "Nike Dunk Low",
-      "brand": "Nike",
-      "price": 100,
-      "inStock": false,
-      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
-      "quantity": 3,
-      "color": "green",
-      "deliveryOption": "pickup",
-      "totalPrice": 300
-    },
-    {
-      "id": "6",
-      "name": "Ultraboost 22",
-      "brand": "Adidas",
-      "price": 180,
+      "price": 150,
       "inStock": true,
-      "image": "https://www.badeqshop.co.ke/cdn/shop/products/Ultraboost22_300x300.jpg?v=1639837850",
+      "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "quantity": 1,
-      "color": "red",
+      "color": "dark red",
       "deliveryOption": "pickup",
-      "totalPrice": 180
-    },
-    {
-      "id": "2",
-      "name": "Air Force 1",
-      "brand": "Nike",
-      "price": 120,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 1,
-      "color": "Blue",
-      "deliveryOption": "pickup",
-      "totalPrice": 120
-    },
-    {
-      "id": "2",
-      "name": "Air Force 1",
-      "brand": "Nike",
-      "price": 120,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 4,
-      "color": "White",
-      "deliveryOption": "delivery",
-      "totalPrice": 480
-    },
-    {
-      "id": "18",
-      "name": "Classic All-Terrain",
-      "brand": "Crocs",
-      "price": 60,
-      "inStock": true,
-      "image": "https://m.media-amazon.com/images/I/71MsAYMRclL._AC_UY900_.jpg",
-      "quantity": 2,
-      "color": "white",
-      "deliveryOption": "pickup",
-      "totalPrice": 120
+      "totalPrice": 150
     },
     {
       "id": "1",
@@ -293,10 +221,46 @@
       "price": 150,
       "inStock": true,
       "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 2,
-      "color": "RED",
+      "quantity": 1,
+      "color": "red",
       "deliveryOption": "pickup",
-      "totalPrice": 300
+      "totalPrice": 150
+    },
+    {
+      "id": "1",
+      "name": "Air Max 270",
+      "brand": "Nike",
+      "price": 150,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "blue",
+      "deliveryOption": "pickup",
+      "totalPrice": 150
+    },
+    {
+      "id": "1",
+      "name": "Air Max 270",
+      "brand": "Nike",
+      "price": 150,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "blue",
+      "deliveryOption": "pickup",
+      "totalPrice": 150
+    },
+    {
+      "id": "1",
+      "name": "Air Max 270",
+      "brand": "Nike",
+      "price": 150,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "blue",
+      "deliveryOption": "pickup",
+      "totalPrice": 150
     },
     {
       "id": "2",
@@ -306,19 +270,7 @@
       "inStock": true,
       "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "quantity": 1,
-      "color": "black",
-      "deliveryOption": "pickup",
-      "totalPrice": 120
-    },
-    {
-      "id": "2",
-      "name": "Air Force 1",
-      "brand": "Nike",
-      "price": 120,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 1,
-      "color": "black",
+      "color": "white",
       "deliveryOption": "pickup",
       "totalPrice": 120
     }
