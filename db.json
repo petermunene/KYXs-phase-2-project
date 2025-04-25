@@ -227,18 +227,6 @@
       "totalPrice": 500
     },
     {
-      "id": "2",
-      "name": "Air Force 1",
-      "brand": "Nike",
-      "price": 120,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 1,
-      "color": "pink",
-      "deliveryOption": "pickup",
-      "totalPrice": 120
-    },
-    {
       "id": "3",
       "name": "Nike Dunk Low",
       "brand": "Nike",
@@ -261,18 +249,6 @@
       "color": "red",
       "deliveryOption": "pickup",
       "totalPrice": 180
-    },
-    {
-      "id": "2",
-      "name": "Air Force 1",
-      "brand": "Nike",
-      "price": 120,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 2,
-      "color": "blue",
-      "deliveryOption": "pickup",
-      "totalPrice": 240
     },
     {
       "id": "2",
@@ -321,6 +297,30 @@
       "color": "RED",
       "deliveryOption": "pickup",
       "totalPrice": 300
+    },
+    {
+      "id": "2",
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "black",
+      "deliveryOption": "pickup",
+      "totalPrice": 120
+    },
+    {
+      "id": "2",
+      "name": "Air Force 1",
+      "brand": "Nike",
+      "price": 120,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "quantity": 1,
+      "color": "black",
+      "deliveryOption": "pickup",
+      "totalPrice": 120
     }
   ]
 }

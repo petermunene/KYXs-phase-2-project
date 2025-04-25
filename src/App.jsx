@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from "./Context/AuthContext";
-import { useAuth } from './Context/AuthContext';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AuthProvider, useAuth } from "./Context/AuthContext"; // Added useAuth import
 import NavBar from './components/NavBar';
 import Home from "./components/Home";
 import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
 import Cart from "./components/Cart";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const [shoeList, setShoeList] = useState([]);
   const [filteredShoes, setFilteredShoes] = useState([]);
   const [cart, setCart] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     fetch("http://localhost:4000/shoes")
@@ -29,17 +30,26 @@ function App() {
 
   function handleRemoveFromCart(shoeToRemove) {
     setCart(prevCart => prevCart.filter(shoe => shoe.id !== shoeToRemove.id));
-    fetch(`http://localhost:4000/cart/${shoeToRemove.id}`,{
-      method:"DELETE"
-    })
+    fetch(`http://localhost:4000/cart/${shoeToRemove.id}`, {
+      method: "DELETE"
+    });
   }
 
-  return (
+  // Check if current route is authentication page
+  const isAuthPage = ['/login', '/signup', '/reset-password'].includes(location.pathname);
 
+  return (
     <AuthProvider>
-      <div style={{ gap: 10, display: "flex", flexDirection: "column" }}>
-        <NavBar cartCount={cart.length} />
+      {!isAuthPage && <NavBar cartCount={cart.length} />}
+      
+      <div style={{ padding: isAuthPage ? '0' : '20px' }}>
         <Routes>
+          {/* Authentication Routes (no navbar) */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/reset-password" element={<PasswordReset />} />
+          
+          {/* Main App Routes (protected, with navbar) */}
           <Route path="/" element={
             <ProtectedRoute>
               <Home 
@@ -48,9 +58,7 @@ function App() {
               />
             </ProtectedRoute>
           } />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/reset-password" element={<PasswordReset />} />
+          
           <Route path="/cart" element={
             <ProtectedRoute>
               <Cart
@@ -59,14 +67,17 @@ function App() {
               />
             </ProtectedRoute>
           } />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          
+          {/* Redirects */}
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="*" element={<ErrorPage errorMessage="Page not found" />} />
         </Routes>
       </div>
     </AuthProvider>
-
   );
 }
 
+// Move ProtectedRoute outside the App component
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" replace />;
