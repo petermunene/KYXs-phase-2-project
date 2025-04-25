@@ -1,9 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 
 function NavBar({ cartCount }) {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <nav style={styles.navbar}>
@@ -11,15 +17,10 @@ function NavBar({ cartCount }) {
         <h2 style={styles.logo}>KYXS</h2>
         <div style={styles.navLinks}>
           <Link style={styles.navLink} to="/">Home</Link>
-          <Link style={styles.navLink} to="/login">Login</Link>
-          <Link style={styles.navLink} to="/signup">Sign Up</Link>
-          {user && <Link style={styles.navLink} to="/profile">Profile</Link>}
-          {user ? (
-            <button onClick={logout} style={styles.logoutButton}>
-              Logout
-            </button>
-          ) : null}
-          {/* Cart Link */}
+          <Link style={styles.navLink} to="/profile">Profile</Link>
+          <button onClick={handleLogout} style={styles.logoutButton}>
+            Logout
+          </button>
           <Link style={styles.cartLink} to="/cart">
             Cart ({cartCount})
           </Link>
@@ -29,9 +30,10 @@ function NavBar({ cartCount }) {
   );
 }
 
+
 const styles = {
   navbar: {
-    backgroundColor: '#a1887f', // warm brown
+    backgroundColor: '#a1887f',
     padding: '10px 20px',
     color: 'white',
   },
