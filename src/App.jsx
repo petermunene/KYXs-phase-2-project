@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { AuthProvider, useAuth } from "./Context/AuthContext"; // Added useAuth import
+import { AuthProvider, useAuth } from "./Context/AuthContext";
 import NavBar from './components/NavBar';
 import Home from "./components/Home";
 import Login from "./components/Auth/Login";
@@ -26,7 +26,6 @@ function App() {
 
   function handleAddToCart(order) {
     setCart(prevCart => [...prevCart, order]);
-    
   }
 
   function handleRemoveFromCart(shoeToRemove) {
@@ -36,7 +35,7 @@ function App() {
     });
   }
 
-  // Check if current route is authentication page
+  
   const isAuthPage = ['/login', '/signup', '/reset-password'].includes(location.pathname);
 
   return (
@@ -45,19 +44,17 @@ function App() {
       
       <div style={{ padding: isAuthPage ? '0' : '20px' }}>
         <Routes>
-          {/* Authentication Routes (no navbar) */}
+          
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/reset-password" element={<PasswordReset />} />
           
-          {/* Main App Routes (protected, with navbar) */}
+         
           <Route path="/" element={
             <ProtectedRoute>
               <Home 
-                allShoes={shoeList}
                 shoes={filteredShoes}
                 onAddShoeToCart={handleAddToCart}
-                setFilteredShoes={setFilteredShoes}
               />
             </ProtectedRoute>
           } />
@@ -71,7 +68,6 @@ function App() {
             </ProtectedRoute>
           } />
           
-          {/* Redirects */}
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="*" element={<ErrorPage errorMessage="Page not found" />} />
         </Routes>
@@ -80,7 +76,7 @@ function App() {
   );
 }
 
-// Move ProtectedRoute outside the App component
+
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" replace />;

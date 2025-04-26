@@ -270,7 +270,7 @@
       "inStock": true,
       "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "quantity": 1,
-      "color": "white",
+      "color": "blue",
       "deliveryOption": "pickup",
       "totalPrice": 120
     }
