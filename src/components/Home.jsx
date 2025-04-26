@@ -7,7 +7,7 @@ export default function Home({allShoes, shoes, onAddShoeToCart ,setFilteredShoes
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Welcome {user?.email}</h1>
+      <h1>Welcome</h1>
       <ShoeCategory shoes={allShoes} setFilteredShoes={setFilteredShoes}/>
       <ShoeList shoes={shoes} onAddShoeToCart={onAddShoeToCart} />
     </div>

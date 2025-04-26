@@ -14,10 +14,9 @@ function NavBar({ cartCount }) {
   return (
     <nav style={styles.navbar}>
       <div style={styles.navContainer}>
-        <h2 style={styles.logo}>KYXS</h2>
+        <h2 style={styles.logo}>KYXs</h2>
         <div style={styles.navLinks}>
           <Link style={styles.navLink} to="/">Home</Link>
-          <Link style={styles.navLink} to="/profile">Profile</Link>
           <button onClick={handleLogout} style={styles.logoutButton}>
             Logout
           </button>
@@ -41,29 +40,27 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    maxWidth: '1200px',
+    margin: '0 auto',
   },
   logo: {
     fontSize: '24px',
     fontWeight: 'bold',
     color: '#3e2723',
+    margin: 0,
   },
   navLinks: {
     display: 'flex',
     gap: '20px',
+    alignItems: 'center',
   },
   navLink: {
     color: '#efebe9',
     textDecoration: 'none',
     fontSize: '16px',
-  },
-  cartLink: {
-    color: 'white',
-    textDecoration: 'none',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    backgroundColor: '#6d4c41',
-    padding: '8px 16px',
-    borderRadius: '8px',
+    padding: '8px 12px',
+    borderRadius: '4px',
+    transition: 'background-color 0.3s',
   },
   logoutButton: {
     backgroundColor: '#8d6e63',
@@ -72,6 +69,8 @@ const styles = {
     padding: '8px 16px',
     cursor: 'pointer',
     borderRadius: '8px',
+    fontSize: '16px',
+    transition: 'background-color 0.3s',
   },
 };
 

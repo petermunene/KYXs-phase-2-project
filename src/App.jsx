@@ -8,6 +8,7 @@ import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
+import ShoeDetail from "./components/ShoeDetail";
 
 function App() {
   const [shoeList, setShoeList] = useState([])
@@ -70,6 +71,12 @@ function App() {
               />
             </ProtectedRoute>
           } />
+
+          <Route path="/shoes/:id" element={
+             <ProtectedRoute>
+                <ShoeDetail />
+              </ProtectedRoute>
+           } />
           
           {/* Redirects */}
           <Route path="/" element={<Navigate to="/login" />} />
