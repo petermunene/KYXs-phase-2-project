@@ -1,6 +1,6 @@
 import React from "react";
 
-function ShoeFilter({ shoes, setFilteredShoes }) {
+function ShoeCategory({ shoes, setFilteredShoes }) {
   function handleFilter(input) {
     const updated = shoes.filter((shoe) => 
       shoe.price.toString().includes(input) ||
@@ -30,4 +30,4 @@ function ShoeFilter({ shoes, setFilteredShoes }) {
   );
 }
 
-export default ShoeFilter;
+export default ShoeCategory;
