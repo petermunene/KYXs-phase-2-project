@@ -249,30 +249,8 @@
       "color": "blue",
       "deliveryOption": "pickup",
       "totalPrice": 150
-    },
-    {
-      "id": "1",
-      "name": "Air Max 270",
-      "brand": "Nike",
-      "price": 150,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 1,
-      "color": "blue",
-      "deliveryOption": "pickup",
-      "totalPrice": 150
-    },
-    {
-      "id": "2",
-      "name": "Air Force 1",
-      "brand": "Nike",
-      "price": 120,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 1,
-      "color": "blue",
-      "deliveryOption": "pickup",
-      "totalPrice": 120
+
     }
+   
   ]
 }
