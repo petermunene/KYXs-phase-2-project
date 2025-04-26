@@ -249,80 +249,8 @@
       "color": "blue",
       "deliveryOption": "pickup",
       "totalPrice": 150
-    },
-    {
-      "id": "1",
-      "name": "Air Max 270",
-      "brand": "Nike",
-      "price": 150,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 1,
-      "color": "blue",
-      "deliveryOption": "pickup",
-      "totalPrice": 150
-    },
-    {
-      "id": "2",
-      "name": "Air Force 1",
-      "brand": "Nike",
-      "price": 120,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 1,
-      "color": "white",
-      "deliveryOption": "pickup",
-      "totalPrice": 120
-
-    },
-    {
-      "id": "1",
-      "name": "Air Max 270",
-      "brand": "Nike",
-      "price": 150,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 2,
-      "color": "RED",
-      "deliveryOption": "pickup",
-      "totalPrice": 300
-    },
-    {
-      "id": "17",
-      "name": "Echo Clog",
-      "brand": "Crocs",
-      "price": 70,
-      "inStock": false,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyj1ScHmn9CCKjKAFd7TIW5WncEXExd8vnxQ&s",
-      "quantity": 2,
-      "color": "",
-      "deliveryOption": "pickup",
-      "totalPrice": 140
-    },
-    {
-      "id": "2",
-      "name": "Air Force 1",
-      "brand": "Nike",
-      "price": 120,
-      "inStock": true,
-      "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "quantity": 1,
-      "color": "",
-      "deliveryOption": "pickup",
-      "totalPrice": 120
-    },
-    {
-      "id": "3",
-      "name": "Nike Dunk Low",
-      "brand": "Nike",
-      "price": 100,
-      "inStock": false,
-      "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
-      "quantity": 1,
-      "color": "",
-      "deliveryOption": "pickup",
-      "totalPrice": 100
 
     }
+   
   ]
 }
