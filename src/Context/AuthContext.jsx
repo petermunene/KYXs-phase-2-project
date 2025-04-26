@@ -5,22 +5,25 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [usersDB, setUsersDB] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Load users from localStorage on initial render
+  // Load auth state from localStorage
   useEffect(() => {
+    const storedUser = localStorage.getItem('currentUser');
     const storedUsers = localStorage.getItem('users');
-    const storedUser = localStorage.getItem('user');
     
-    if (storedUsers) {
-      setUsersDB(JSON.parse(storedUsers));
-    }
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+    if (storedUsers) {
+      setUsersDB(JSON.parse(storedUsers));
+    }
+    setIsLoading(false);
   }, []);
 
   const login = async (email, password) => {
     try {
+      setIsLoading(true);
       await new Promise(resolve => setTimeout(resolve, 500));
       
       const userExists = usersDB.find(
@@ -28,18 +31,26 @@ export function AuthProvider({ children }) {
       );
       
       if (userExists) {
-        setUser({ email: userExists.email });
-        localStorage.setItem('user', JSON.stringify({ email: userExists.email }));
+        const userData = { 
+          email: userExists.email,
+          id: userExists.id || Date.now().toString()
+        };
+        setUser(userData);
+        localStorage.setItem('currentUser', JSON.stringify(userData));
         return true;
       }
       throw new Error("Invalid credentials");
     } catch (error) {
+      console.error("Login error:", error);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const signup = async (userData) => {
     try {
+      setIsLoading(true);
       await new Promise(resolve => setTimeout(resolve, 500));
       
       const emailExists = usersDB.some(user => user.email === userData.email);
@@ -48,31 +59,48 @@ export function AuthProvider({ children }) {
       }
 
       const newUser = {
-        email: userData.email,
-        password: userData.password
+        ...userData,
+        id: Date.now().toString()
       };
 
       const updatedUsers = [...usersDB, newUser];
       setUsersDB(updatedUsers);
       localStorage.setItem('users', JSON.stringify(updatedUsers));
       
-      return true; // Success, but don't log in
+      return true;
     } catch (error) {
+      console.error("Signup error:", error);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
-    return true;
+    localStorage.removeItem('currentUser');
+  };
+
+  const value = {
+    user,
+    isLoading,
+    login,
+    signup,
+    logout,
+    isAuthenticated: !!user
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
-      {children}
+    <AuthContext.Provider value={value}>
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

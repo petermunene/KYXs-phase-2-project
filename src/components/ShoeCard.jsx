@@ -129,7 +129,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
                 onRemoveShoeFromCart(shoe);
               }}
               style={{
-                backgroundColor: "#d32f2f",
+                backgroundColor: "#644619",
                 borderRadius: 5,
                 color: "white",
                 padding: 10,
@@ -147,7 +147,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
                 alert("Purchase Successful!");
               }}
               style={{
-                backgroundColor: "#2e7d32",
+                backgroundColor: "#644619",
                 borderRadius: 5,
                 color: "white",
                 padding: 10,
