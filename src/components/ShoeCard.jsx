@@ -34,16 +34,10 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
       inStock: shoe.inStock 
     };
 
-    fetch("http://localhost:4000/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(order)
-    }).then(() => {
       if (onAddShoeToCart) {
         onAddShoeToCart(order);
       }
       setShowForm(false);
-    });
   };
 
   return (
@@ -126,7 +120,7 @@ function ShoeCard({ shoe, onAddShoeToCart, onRemoveShoeFromCart }) {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                onRemoveShoeFromCart(shoe);
+                onRemoveShoeFromCart(shoe.id, shoe.color);
               }}
               style={{
                 backgroundColor: "#644619",
