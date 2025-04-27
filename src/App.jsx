@@ -62,20 +62,23 @@ function App() {
     }
   };
 
+
   const handleRemoveFromCart = async (shoeId) => {
     try {
-      setCart(prev => prev.filter(item => item.id !== shoeId));
-      await fetch(`http://localhost:4000/cart/${shoeId}`, {
-        method: "DELETE"
+      await fetch(`http://localhost:4000/cart/${itemId}`, {
+        method: 'DELETE',
       });
+      setCart(prevCart => prevCart.filter(item => item.id !== itemId));
     } catch (error) {
-      console.error("Error removing item:", error);
-      
+      console.error('Error removing item:', error);
+      alert('Failed to remove item from cart.');
     }
   };
+  
 
   const handleClearCart = async () => {
     try {
+
       await Promise.all(
         cart.map(item => 
           fetch(`http://localhost:4000/cart/${item.id}`, { 
@@ -84,10 +87,13 @@ function App() {
         )
       );
       setCart([]);
+      alert('Cart cleared successfully!');
     } catch (error) {
-      console.error("Error clearing cart:", error);
+      console.error('Failed to clear cart:', error);
+      alert('Failed to clear cart.');
     }
   };
+  
 
   const isAuthPage = ['/login', '/signup', '/reset-password'].includes(location.pathname);
 
