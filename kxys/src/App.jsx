@@ -10,7 +10,7 @@ import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
 import ShoeDetail from "./components/ShoeDetail";
 const BASE_URL = window.location.hostname === "localhost"
-  ? "http://localhost:5000"
+  ? "http://localhost:4000"
   : "https://my-app-backend-hvge.onrender.com/api";
 
 function App() {
