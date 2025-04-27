@@ -1,16 +1,119 @@
-<<<<<<< HEAD
-# React + Vite
+# KYXS Shoe Store - E-Commerce Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
+KYXS is a modern e-commerce platform specializing in premium footwear. This React-based application features user authentication, product browsing, cart functionality, and a seamless checkout experience. The app showcases shoes from top brands like Nike, Adidas, Converse, and more.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🔐 Authentication System
+- User login/signup with form validation
+- Password strength meter
+- Protected routes
+- Session persistence
 
-## Expanding the ESLint configuration
+### 🛍️ Product Catalog
+- Filterable shoe listings
+- Detailed product pages
+- Stock availability indicators
+- Color selection options
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# KYXs-phase-2-project
->>>>>>> 96ec932f9d1b318612e643418743cb8deed76bd3
+### 🛒 Shopping Cart
+- Add/remove items
+- Quantity adjustment
+- Color preferences
+- Delivery options
+- Real-time total calculation
+
+### 🎨 UI Components
+- Responsive design
+- Interactive product cards
+- Modal forms
+- Loading states
+- Error handling
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React.js
+- React Router
+- Context API (State Management)
+- CSS Modules
+- Axios (HTTP Client)
+
+### Backend (Mock)
+- JSON Server
+- LocalStorage (Persistence)
+
+## 📂 Project Structure
+
+```
+src/
+├── components/
+│   ├── Auth/               # Authentication components
+│   ├── Cart/               # Cart-related components
+│   ├── Shoes/              # Product display components
+│   └── UI/                 # Reusable UI elements
+├── context/
+│   └── AuthContext.jsx     # Authentication state
+├── pages/
+│   ├── Home.jsx            # Main product page
+│   ├── ShoeDetail.jsx      # Single product view
+│   └── ...                 # Other pages
+├── styles/
+│   ├── auth.css            # Auth page styles
+│   └── main.css            # Global styles
+├── App.jsx                 # Main app component
+└── index.jsx               # Entry point
+```
+
+## 🚀 Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/kxys-shoe-store.git
+   cd kxys-shoe-store
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
+
+4. **Run the mock API server (in separate terminal)**
+   ```bash
+   npm run server
+   ```
+
+## 🌐 API Endpoints
+
+The app uses a mock API with these endpoints:
+
+- `GET /shoes` - Get all shoes
+- `POST /cart` - Add to cart
+- `DELETE /cart/:id` - Remove from cart
+
+## 🔧 Configuration
+
+Create a `.env` file in the root directory:
+
+```env
+REACT_APP_API_URL=http://localhost:4000
+REACT_APP_DEFAULT_TIMEOUT=5000
+```
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.

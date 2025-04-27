@@ -54,11 +54,12 @@ export default function SignUp() {
       setError('');
       setLoading(true);
       await signup({ email, password });
-      navigate('/');
-    } catch {
-      setError('Failed to create account');
+      navigate('/login', { state: { email } }); // Redirect to login with email prefilled
+    } catch (error) {
+      setError(error.message || 'Failed to create account');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -77,6 +78,7 @@ export default function SignUp() {
             onChange={(e) => setEmail(e.target.value)}
             required
             className="form-input"
+            placeholder="Enter your email"
           />
         </div>
 
@@ -89,6 +91,7 @@ export default function SignUp() {
             onChange={(e) => setPassword(e.target.value)}
             required
             className="form-input"
+            placeholder="Create a password"
           />
           {password && (
             <div className="password-strength-meter">
@@ -109,6 +112,7 @@ export default function SignUp() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
             className="form-input"
+            placeholder="Confirm your password"
           />
         </div>
 

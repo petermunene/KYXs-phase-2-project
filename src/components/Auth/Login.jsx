@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from "../../Context/AuthContext";
 
 export default function Login() {
@@ -9,6 +9,14 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Pre-fill email if coming from signup
+  useEffect(() => {
+    if (location.state?.email) {
+      setEmail(location.state.email);
+    }
+  }, [location]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,10 +25,11 @@ export default function Login() {
       setLoading(true);
       await login(email, password);
       navigate('/');
-    } catch {
-      setError('Failed to log in. Please check your credentials.');
+    } catch (error) {
+      setError(error.message || 'Failed to log in. Please check your credentials.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -64,14 +73,14 @@ export default function Login() {
           {loading ? 'Logging in...' : 'Login'}
         </button>
 
-        <div className="forgot-password-container" style={{ textAlign: 'center', margin: '1rem 0' }}>
+        <div className="forgot-password-container">
           <Link to="/reset-password" className="btn-link">
             Forgot Password?
           </Link>
         </div>
       </form>
 
-      <div className="auth-footer" >
+      <div className="auth-footer">
         Don't have an account?{' '}
         <Link to="/signup" className="btn-link">
           Sign Up
