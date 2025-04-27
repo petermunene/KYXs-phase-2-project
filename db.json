@@ -378,25 +378,5 @@
       ]
     }
   ],
-  "cart": [
-    {
-      "id": "14",
-      "name": "One Star",
-      "brand": "Converse",
-      "price": 75,
-      "inStock": true,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzHIAQpEXkW_o_4Xt0UavZG13pvHrZzAS6kg&s",
-      "description": "The skateboarding classic with a suede upper and signature lone star logo. Low-profile cushioning provides boardfeel and comfort.",
-      "availableColors": [
-        "British Tan",
-        "Black",
-        "Pro Blue",
-        "Burgundy"
-      ],
-      "quantity": 1,
-      "color": "Pro Blue",
-      "deliveryOption": "pickup",
-      "totalPrice": 75
-    }
-  ]
+  "cart": []
 }
