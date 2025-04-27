@@ -9,6 +9,9 @@ import PasswordReset from "./components/Auth/PasswordReset";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
 import ShoeDetail from "./components/ShoeDetail";
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:4000"
+  : "https://my-app-backend-hvge.onrender.com/api";
 
 function App() {
   const [shoeList, setShoeList] = useState([]);
@@ -19,7 +22,7 @@ function App() {
   // Load initial data
   useEffect(() => {
     // Load shoes
-    fetch("https://my-app-backend-hvge.onrender.com/api/shoes")
+    fetch(`${BASE_URL}/shoes`)
       .then((res) => res.json())
       .then((data) => {
         setFilteredShoes(data);
@@ -27,7 +30,7 @@ function App() {
       });
 
     // Load cart from API
-    fetch("https://my-app-backend-hvge.onrender.com/api/cart")
+    fetch(`${BASE_URL}/cart`)
       .then((res) => res.json())
       .then((cartData) => setCart(cartData))
       .catch(console.error);
@@ -36,7 +39,7 @@ function App() {
   // Add to cart with API sync
   const handleAddToCart = async (order) => {
     try {
-      const response = await fetch("https://my-app-backend-hvge.onrender.com/api/cart", {
+      const response = await fetch(`${BASE_URL}/cart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(order)
@@ -59,7 +62,7 @@ function App() {
       );
       
       // API update
-      await fetch(`https://my-app-backend-hvge.onrender.com/api/cart/${shoeId}`, {
+      await fetch(`${BASE_URL}/cart/${shoeId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ quantity: newQuantity })
@@ -73,7 +76,7 @@ function App() {
   // Remove item with API sync
   const handleRemoveFromCart = async (itemId) => {
     try {
-      await fetch(`https://my-app-backend-hvge.onrender.com/api/cart/${itemId}`, {
+      await fetch(`${BASE_URL}/cart/${itemId}`, {
         method: 'DELETE',
       });
       // Update local cart state by filtering out the removed item
@@ -88,7 +91,7 @@ function App() {
   const handleClearCart = async () => {
     try {
       const deleteRequests = cart.map(item => 
-        fetch(`https://my-app-backend-hvge.onrender.com/api/cart/${item.id}`, {
+        fetch(`${BASE_URL}/cart/${item.id}`, {
           method: 'DELETE',
         })
       );
