@@ -380,23 +380,42 @@
   ],
   "cart": [
     {
-      "id": "14",
-      "name": "One Star",
-      "brand": "Converse",
-      "price": 75,
+      "id": "4",
+      "name": "Nike Pegasus 39",
+      "brand": "Nike",
+      "price": 130,
       "inStock": true,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzHIAQpEXkW_o_4Xt0UavZG13pvHrZzAS6kg&s",
-      "description": "The skateboarding classic with a suede upper and signature lone star logo. Low-profile cushioning provides boardfeel and comfort.",
+      "image": "https://images.pexels.com/photos/6540973/pexels-photo-6540973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "description": "A workhorse with wings, the Pegasus 39 offers responsive cushioning for your daily runs. Updated midsole foam provides softer landings and explosive takeoffs.",
       "availableColors": [
-        "British Tan",
-        "Black",
-        "Pro Blue",
-        "Burgundy"
+        "Black/Volt",
+        "White/Red",
+        "Eclipse/Blue",
+        "Bright Crimson"
       ],
-      "quantity": 1,
-      "color": "Pro Blue",
+      "quantity": 2,
+      "color": "Black/Volt",
       "deliveryOption": "pickup",
-      "totalPrice": 75
+      "totalPrice": 260
+    },
+    {
+      "id": "4",
+      "name": "Nike Pegasus 39",
+      "brand": "Nike",
+      "price": 130,
+      "inStock": true,
+      "image": "https://images.pexels.com/photos/6540973/pexels-photo-6540973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "description": "A workhorse with wings, the Pegasus 39 offers responsive cushioning for your daily runs. Updated midsole foam provides softer landings and explosive takeoffs.",
+      "availableColors": [
+        "Black/Volt",
+        "White/Red",
+        "Eclipse/Blue",
+        "Bright Crimson"
+      ],
+      "quantity": 2,
+      "color": "Black/Volt",
+      "deliveryOption": "pickup",
+      "totalPrice": 260
     }
   ]
 }
