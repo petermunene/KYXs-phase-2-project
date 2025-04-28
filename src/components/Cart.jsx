@@ -5,34 +5,152 @@ import ShoeCard from "./ShoeCard";
 function Cart({ cart, onRemoveShoeFromCart, onUpdateQuantity, onClearCart }) {
   const navigate = useNavigate();
 
+  // Calculate cart total
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  }
+  };
 
+  // Handle quantity changes
   const handleQuantityChange = (shoeId, newQuantity) => {
     if (newQuantity >= 1) {
       onUpdateQuantity(shoeId, newQuantity);
-    } else {
-      onRemoveShoeFromCart(shoeId);
     }
   };
 
+  // Handle checkout
   const handleCheckout = () => {
-    alert("Purchase successful! Thank you for your order.");
-    onClearCart();
-    navigate("/");
+    alert("Proceeding to checkout!");
+    // Add your checkout logic here
   };
 
+  // Handle continue shopping
   const handleContinueShopping = () => {
     navigate("/");
   };
 
+  // Styles object
+  const styles = {
+    container: {
+      maxWidth: '1200px',
+      margin: '2rem auto',
+      padding: '0 1rem'
+    },
+    title: {
+      fontSize: '1.8rem',
+      marginBottom: '1.5rem',
+      color: '#333'
+    },
+    emptyCart: {
+      textAlign: 'center',
+      padding: '3rem 0'
+    },
+    emptyText: {
+      fontSize: '1.2rem',
+      color: '#666'
+    },
+    continueButton: {
+      padding: '0.8rem 1.5rem',
+      backgroundColor: '#644619',
+      color: 'white',
+      border: 'none',
+      borderRadius: '4px',
+      marginTop: '1rem',
+      cursor: 'pointer',
+      fontSize: '1rem'
+    },
+    itemsContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1.5rem',
+      marginBottom: '2rem'
+    },
+    cartItem: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '2rem',
+      padding: '1rem',
+      border: '1px solid #eee',
+      borderRadius: '8px',
+      position: 'relative'
+    },
+    quantityControls: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      marginLeft: '1rem'
+    },
+    quantityButton: {
+      width: '30px',
+      height: '30px',
+      border: '1px solid #ddd',
+      backgroundColor: 'white',
+      cursor: 'pointer',
+      borderRadius: '4px',
+      fontSize: '1rem',
+      ':hover': {
+        backgroundColor: '#f5f5f5'
+      }
+    },
+    quantityDisplay: {
+      minWidth: '30px',
+      textAlign: 'center'
+    },
+    itemSubtotal: {
+      marginLeft: 'auto',
+      fontWeight: 'bold',
+      fontSize: '1.1rem'
+    },
+    summary: {
+      backgroundColor: '#f9f9f9',
+      padding: '1.5rem',
+      borderRadius: '8px',
+      marginTop: '2rem'
+    },
+    summaryRow: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '1rem',
+      fontSize: '1.1rem'
+    },
+    totalRow: {
+      fontSize: '1.2rem',
+      fontWeight: 'bold',
+      borderTop: '1px solid #ddd',
+      paddingTop: '1rem'
+    },
+    actionButtons: {
+      display: 'flex',
+      gap: '1rem',
+      marginTop: '1rem'
+    },
+    checkoutButton: {
+      flex: 1,
+      padding: '1rem',
+      backgroundColor: '#644619',
+      color: 'white',
+      border: 'none',
+      borderRadius: '4px',
+      fontSize: '1rem',
+      cursor: 'pointer',
+      fontWeight: 'bold'
+    },
+    clearButton: {
+      flex: 1,
+      padding: '1rem',
+      backgroundColor: '#644619',
+      color: 'white',
+      border: 'none',
+      borderRadius: '4px',
+      fontSize: '1rem',
+      cursor: 'pointer',
+      fontWeight: 'bold'
+    }
+  };
+
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>
-        Your Shopping Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)} {cart.reduce((sum, item) => sum + item.quantity, 0) === 1 ? 'item' : 'items'})
-      </h2>
-
+      <h2 style={styles.title}>Your Shopping Cart ({cart.length} {cart.length === 1 ? 'item' : 'items'})</h2>
+      
       {cart.length === 0 ? (
         <div style={styles.emptyCart}>
           <p style={styles.emptyText}>Your cart is empty</p>
@@ -116,120 +234,3 @@ function Cart({ cart, onRemoveShoeFromCart, onUpdateQuantity, onClearCart }) {
 }
 
 export default Cart;
-const styles = {
-  container: {
-    maxWidth: '1200px',
-    margin: '2rem auto',
-    padding: '0 1rem'
-  },
-  title: {
-    fontSize: '1.8rem',
-    marginBottom: '1.5rem',
-    color: '#333'
-  },
-  emptyCart: {
-    textAlign: 'center',
-    padding: '3rem 0'
-  },
-  emptyText: {
-    fontSize: '1.2rem',
-    color: '#666'
-  },
-  continueButton: {
-    padding: '0.8rem 1.5rem',
-    backgroundColor: '#644619',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    marginTop: '1rem',
-    cursor: 'pointer',
-    fontSize: '1rem'
-  },
-  itemsContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1.5rem',
-    marginBottom: '2rem'
-  },
-  cartItem: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '2rem',
-    padding: '1rem',
-    border: '1px solid #eee',
-    borderRadius: '8px',
-    position: 'relative'
-  },
-  quantityControls: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    marginLeft: '1rem'
-  },
-  quantityButton: {
-    width: '30px',
-    height: '30px',
-    border: '1px solid #ddd',
-    backgroundColor: 'white',
-    cursor: 'pointer',
-    borderRadius: '4px',
-    fontSize: '1rem',
-    ':hover': {
-      backgroundColor: '#f5f5f5'
-    }
-  },
-  quantityDisplay: {
-    minWidth: '30px',
-    textAlign: 'center'
-  },
-  itemSubtotal: {
-    marginLeft: 'auto',
-    fontWeight: 'bold',
-    fontSize: '1.1rem'
-  },
-  summary: {
-    backgroundColor: '#f9f9f9',
-    padding: '1.5rem',
-    borderRadius: '8px',
-    marginTop: '2rem'
-  },
-  summaryRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '1rem',
-    fontSize: '1.1rem'
-  },
-  totalRow: {
-    fontSize: '1.2rem',
-    fontWeight: 'bold',
-    borderTop: '1px solid #ddd',
-    paddingTop: '1rem'
-  },
-  actionButtons: {
-    display: 'flex',
-    gap: '1rem',
-    marginTop: '1rem'
-  },
-  checkoutButton: {
-    flex: 1,
-    padding: '1rem',
-    backgroundColor: '#644619',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    fontSize: '1rem',
-    cursor: 'pointer',
-    fontWeight: 'bold'
-  },
-  clearButton: {
-    flex: 1,
-    padding: '1rem',
-    backgroundColor: '#644619',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    fontSize: '1rem',
-    cursor: 'pointer',
-    fontWeight: 'bold'
-  }
-}

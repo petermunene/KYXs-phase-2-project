@@ -9,6 +9,9 @@ import PasswordReset from "./components/Auth/PasswordReset";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
 import ShoeDetail from "./components/ShoeDetail";
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:4000"
+  : "https://my-app-backend-hvge.onrender.com/api";
 
 function App() {
   const [shoeList, setShoeList] = useState([]);
@@ -16,23 +19,27 @@ function App() {
   const [cart, setCart] = useState([]);
   const location = useLocation();
 
+  // Load initial data
   useEffect(() => {
-    fetch("http://localhost:4000/shoes")
+    // Load shoes
+    fetch(`${BASE_URL}/shoes`)
       .then((res) => res.json())
       .then((data) => {
         setFilteredShoes(data);
         setShoeList(data);
       });
 
-    fetch("http://localhost:4000/cart")
+    // Load cart from API
+    fetch(`${BASE_URL}/cart`)
       .then((res) => res.json())
       .then((cartData) => setCart(cartData))
       .catch(console.error);
   }, []);
 
+  // Add to cart with API sync
   const handleAddToCart = async (order) => {
     try {
-      const response = await fetch("http://localhost:4000/cart", {
+      const response = await fetch(`${BASE_URL}/cart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(order)
@@ -44,51 +51,61 @@ function App() {
     }
   };
 
+  // Update quantity with API sync
   const handleUpdateQuantity = async (shoeId, newQuantity) => {
     try {
+      // Optimistic UI update
       setCart(prev => 
         prev.map(item => 
           item.id === shoeId ? {...item, quantity: newQuantity} : item
         )
       );
-    
-      await fetch(`http://localhost:4000/cart/${shoeId}`, {
+      
+      // API update
+      await fetch(`${BASE_URL}/cart/${shoeId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ quantity: newQuantity })
       });
     } catch (error) {
       console.error("Error updating quantity:", error);
+      // Optionally: Revert UI on error
     }
   };
 
-  const handleRemoveFromCart = async (shoeId) => {
+  // Remove item with API sync
+  const handleRemoveFromCart = async (itemId) => {
     try {
-      setCart(prev => prev.filter(item => item.id !== shoeId));
-      await fetch(`http://localhost:4000/cart/${shoeId}`, {
-        method: "DELETE"
+      await fetch(`${BASE_URL}/cart/${itemId}`, {
+        method: 'DELETE',
       });
+      // Update local cart state by filtering out the removed item
+      setCart(prevCart => prevCart.filter(item => item.id !== itemId));
     } catch (error) {
-      console.error("Error removing item:", error);
-      
+      console.error('Error removing item:', error);
+      alert('Failed to remove item from cart.');
     }
   };
+  
 
   const handleClearCart = async () => {
     try {
-      await Promise.all(
-        cart.map(item => 
-          fetch(`http://localhost:4000/cart/${item.id}`, { 
-            method: "DELETE" 
-          })
-        )
+      const deleteRequests = cart.map(item => 
+        fetch(`${BASE_URL}/cart/${item.id}`, {
+          method: 'DELETE',
+        })
       );
+      await Promise.all(deleteRequests);
       setCart([]);
+      alert('Cart cleared successfully!');
     } catch (error) {
-      console.error("Error clearing cart:", error);
+      console.error('Failed to clear cart:', error);
+      alert('Failed to clear cart.');
     }
   };
+  
 
+  // Check if current route is authentication page
   const isAuthPage = ['/login', '/signup', '/reset-password'].includes(location.pathname);
 
   return (
@@ -97,10 +114,12 @@ function App() {
       
       <div style={{ padding: isAuthPage ? '0' : '20px' }}>
         <Routes>
+          {/* Authentication Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/reset-password" element={<PasswordReset />} />
           
+          {/* Main App Routes */}
           <Route path="/" element={
             <ProtectedRoute>
               <Home 
@@ -128,7 +147,8 @@ function App() {
               <ShoeDetail />
             </ProtectedRoute>
           } />
-
+          
+          {/* Redirects */}
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="*" element={<ErrorPage errorMessage="Page not found" />} />
         </Routes>

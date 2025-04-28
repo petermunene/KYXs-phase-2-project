@@ -380,42 +380,62 @@
   ],
   "cart": [
     {
-      "id": "4",
-      "name": "Nike Pegasus 39",
-      "brand": "Nike",
-      "price": 130,
+      "id": "11",
+      "name": "Chuck Taylor All Star",
+      "brand": "Converse",
+      "price": 65,
       "inStock": true,
-      "image": "https://images.pexels.com/photos/6540973/pexels-photo-6540973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "description": "A workhorse with wings, the Pegasus 39 offers responsive cushioning for your daily runs. Updated midsole foam provides softer landings and explosive takeoffs.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7L3bnj7o4toEGEl0cqp2c5xvinC0uTEZ-Mg&s",
+      "description": "The original basketball shoe that became a cultural canvas. Classic canvas upper with rubber toe cap and iconic star ankle patch.",
       "availableColors": [
-        "Black/Volt",
-        "White/Red",
-        "Eclipse/Blue",
-        "Bright Crimson"
+        "Black",
+        "White",
+        "Red",
+        "Navy",
+        "Natural"
       ],
-      "quantity": 2,
-      "color": "Black/Volt",
+      "quantity": 1,
+      "color": "Black",
       "deliveryOption": "pickup",
-      "totalPrice": 260
+      "totalPrice": 65
     },
     {
-      "id": "4",
-      "name": "Nike Pegasus 39",
-      "brand": "Nike",
-      "price": 130,
+      "id": "10",
+      "name": "Forum Low",
+      "brand": "Adidas",
+      "price": 100,
       "inStock": true,
-      "image": "https://images.pexels.com/photos/6540973/pexels-photo-6540973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "description": "A workhorse with wings, the Pegasus 39 offers responsive cushioning for your daily runs. Updated midsole foam provides softer landings and explosive takeoffs.",
+      "image": "https://assets.adidas.com/images/w_1880,f_auto,q_auto/09c5ea6df1bd4be6baaaac5e003e7047_9366/FY7756_01_standard.jpg",
+      "description": "The basketball icon returns with its signature oversized straps and bold attitude. Premium leather upper offers classic style and durability.",
       "availableColors": [
-        "Black/Volt",
-        "White/Red",
-        "Eclipse/Blue",
-        "Bright Crimson"
+        "Cloud White/Gold",
+        "Core Black/Red",
+        "Collegiate Green",
+        "Legend Ink"
       ],
-      "quantity": 2,
-      "color": "Black/Volt",
+      "quantity": 1,
+      "color": "Collegiate Green",
       "deliveryOption": "pickup",
-      "totalPrice": 260
+      "totalPrice": 100
+    },
+    {
+      "id": "7",
+      "name": "Adidas Superstar",
+      "brand": "Adidas",
+      "price": 90,
+      "inStock": true,
+      "image": "https://m.media-amazon.com/images/I/716Inzq-uoL._AC_SL1500_.jpg",
+      "description": "The iconic shell-toe design that became a hip-hop legend. The Superstar features a durable leather upper and classic serrated 3-Stripes.",
+      "availableColors": [
+        "White/Black",
+        "Black/White",
+        "Gold Metallic",
+        "Collegiate Green"
+      ],
+      "quantity": 1,
+      "color": "Black/White",
+      "deliveryOption": "pickup",
+      "totalPrice": 90
     }
   ]
 }
