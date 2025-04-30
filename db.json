@@ -5,7 +5,7 @@
       "name": "Air Max 270",
       "brand": "Nike",
       "price": 150,
-      "inStock": true,
+      "inStock": false,
       "image": "https://images.pexels.com/photos/10657971/pexels-photo-10657971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "description": "Experience ultimate comfort with Nike's iconic Air Max 270, featuring the tallest Air unit yet for all-day cushioning. Perfect for casual wear with a bold, statement-making design.",
       "availableColors": [
@@ -20,7 +20,7 @@
       "name": "Air Force 1",
       "brand": "Nike",
       "price": 120,
-      "inStock": true,
+      "inStock": false,
       "image": "https://images.pexels.com/photos/11946042/pexels-photo-11946042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "description": "The classic white-on-white Nike Air Force 1 revolutionized basketball footwear and streetwear culture. Timeless style meets durable leather construction.",
       "availableColors": [
@@ -35,7 +35,7 @@
       "name": "Nike Dunk Low",
       "brand": "Nike",
       "price": 100,
-      "inStock": false,
+      "inStock": true,
       "image": "https://images.pexels.com/photos/20298289/pexels-photo-20298289/free-photo-of-nike-dunk-low-medium-olive-sneakers-lying-on-satin-fabric.png?auto=compress&cs=tinysrgb&w=600",
       "description": "Originally designed for the hardwood, the Dunk Low returns with classic colors and throwback hoops flair. Premium leather offers durability and comfort.",
       "availableColors": [
@@ -436,6 +436,33 @@
       "color": "Black/White",
       "deliveryOption": "pickup",
       "totalPrice": 90
+    },
+    {
+      "id": "9",
+      "name": "Adizero Boston 10",
+      "brand": "Adidas",
+      "price": 110,
+      "inStock": true,
+      "image": "https://www.badeqshop.co.ke/cdn/shop/files/boston10blue.jpg?v=1713526376",
+      "description": "A lightweight speed trainer with energy-returning Boost cushioning. The Boston 10 helps you maintain pace from warmup to cooldown.",
+      "availableColors": [
+        "Legend Ink",
+        "Solar Red",
+        "Core Black",
+        "Cloud White"
+      ],
+      "quantity": 1,
+      "color": "Solar Red",
+      "deliveryOption": "pickup",
+      "totalPrice": 110
+    }
+  ],
+  "login": [
+    {
+      "id": "1",
+      "email": "admin@kyxs.com",
+      "password": "admin123",
+      "isAdmin": true
     }
   ]
 }
