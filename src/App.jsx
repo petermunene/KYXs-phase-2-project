@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { AuthProvider, useAuth } from "./Context/AuthContext"; 
+import { AuthProvider, useAuth } from "./Context/AuthContext";
 import NavBar from './components/NavBar';
 import Home from "./components/Home";
+import ShoeList from "./components/ShoesList";
+import ShoeCategory from "./components/ShoeCategory";
 import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
 import PasswordReset from "./components/Auth/PasswordReset";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
 import ShoeDetail from "./components/ShoeDetail";
+import AdminDashboard from "./components/admin/AdminDashboard";
+
 const BASE_URL = window.location.hostname === "localhost"
   ? "http://localhost:4000"
   : "https://my-app-backend-hvge.onrender.com/api";
@@ -17,31 +21,52 @@ function App() {
   const [shoeList, setShoeList] = useState([]);
   const [filteredShoes, setFilteredShoes] = useState([]);
   const [cart, setCart] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
+  const { user } = useAuth();
 
-  // Load initial data
   useEffect(() => {
-    // Load shoes
-    fetch(`${BASE_URL}/shoes`)
-      .then((res) => res.json())
-      .then((data) => {
-        setFilteredShoes(data);
-        setShoeList(data);
-      });
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        // Load shoes
+        const shoesResponse = await fetch(`${BASE_URL}/shoes`);
+        const shoesData = await shoesResponse.json();
+        setShoeList(shoesData);
+        setFilteredShoes(shoesData);
 
-    // Load cart from API
-    fetch(`${BASE_URL}/cart`)
-      .then((res) => res.json())
-      .then((cartData) => setCart(cartData))
-      .catch(console.error);
-  }, []);
+        // Load cart if authenticated
+        if (user) {
+          const cartResponse = await fetch(`${BASE_URL}/cart`, {
+            headers: {
+              'Authorization': `Bearer ${user.token}`
+            }
+          });
+          const cartData = await cartResponse.json();
+          setCart(cartData);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  // Add to cart with API sync
+    fetchData();
+  }, [user]);
+
   const handleAddToCart = async (order) => {
+    if (!user) {
+      return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+    }
+
     try {
       const response = await fetch(`${BASE_URL}/cart`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${user.token}`
+        },
         body: JSON.stringify(order)
       });
       const newItem = await response.json();
@@ -51,62 +76,97 @@ function App() {
     }
   };
 
-  // Update quantity with API sync
-  const handleUpdateQuantity = async (shoeId, newQuantity) => {
+  const handleUpdateQuantity = async (shoeId, color, newQuantity) => {
     try {
-      // Optimistic UI update
+      const uniqueId = `${shoeId}-${color}`;
       setCart(prev => 
         prev.map(item => 
-          item.id === shoeId ? {...item, quantity: newQuantity} : item
+          `${item.id}-${item.color}` === uniqueId 
+            ? {...item, quantity: newQuantity} 
+            : item
         )
       );
       
-      // API update
-      await fetch(`${BASE_URL}/cart/${shoeId}`, {
+      await fetch(`${BASE_URL}/cart/${uniqueId}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${user.token}`
+        },
         body: JSON.stringify({ quantity: newQuantity })
       });
     } catch (error) {
       console.error("Error updating quantity:", error);
-      // Optionally: Revert UI on error
     }
   };
 
-  // Remove item with API sync
-  const handleRemoveFromCart = async (itemId) => {
+  const handleRemoveFromCart = async (shoeId, color) => {
     try {
-      await fetch(`${BASE_URL}/cart/${itemId}`, {
-        method: 'DELETE',
+      const uniqueId = `${shoeId}-${color}`;
+      setCart(prev => prev.filter(item => `${item.id}-${item.color}` !== uniqueId));
+      await fetch(`${BASE_URL}/cart/${uniqueId}`, { 
+        method: "DELETE",
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
       });
-      // Update local cart state by filtering out the removed item
-      setCart(prevCart => prevCart.filter(item => item.id !== itemId));
     } catch (error) {
-      console.error('Error removing item:', error);
-      alert('Failed to remove item from cart.');
+      console.error("Error removing item:", error);
     }
   };
-  
 
   const handleClearCart = async () => {
     try {
-      const deleteRequests = cart.map(item => 
-        fetch(`${BASE_URL}/cart/${item.id}`, {
-          method: 'DELETE',
-        })
+      await Promise.all(
+        cart.map(item => 
+          fetch(`${BASE_URL}/cart/${item.id}-${item.color}`, { 
+            method: "DELETE",
+            headers: {
+              'Authorization': `Bearer ${user.token}`
+            }
+          })
+        )
       );
-      await Promise.all(deleteRequests);
       setCart([]);
-      alert('Cart cleared successfully!');
     } catch (error) {
-      console.error('Failed to clear cart:', error);
-      alert('Failed to clear cart.');
+      console.error("Error clearing cart:", error);
     }
   };
-  
 
-  // Check if current route is authentication page
+  const addNewShoe = async (newShoe) => {
+    try {
+      const response = await fetch(`${BASE_URL}/shoes`, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify(newShoe)
+      });
+      const addedShoe = await response.json();
+      setShoeList(prev => [...prev, addedShoe]);
+      setFilteredShoes(prev => [...prev, addedShoe]);
+      return addedShoe;
+    } catch (error) {
+      console.error("Error adding shoe:", error);
+      throw error;
+    }
+  };
+
   const isAuthPage = ['/login', '/signup', '/reset-password'].includes(location.pathname);
+
+  if (isLoading) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}>
+        <div>Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <AuthProvider>
@@ -114,23 +174,28 @@ function App() {
       
       <div style={{ padding: isAuthPage ? '0' : '20px' }}>
         <Routes>
-          {/* Authentication Routes */}
+          {/* Public routes */}
+          <Route path="/" element={<Home />} />
+          
+          <Route path="/shoes" element={
+        <ProtectedRoute>
+        <>
+          <ShoeCategory shoes={shoeList} setFilteredShoes={setFilteredShoes} />
+          <ShoeList shoes={filteredShoes} onAddShoeToCart={handleAddToCart} />
+        </>
+        </ProtectedRoute>
+        } />
+  
+          <Route path="/shoes" element={<ShoeCategory />} />
+          <Route path="/shoes/:id" element={<ShoeDetail />} />
+          <Route path="/shoedetail" element={<ShoeDetail />} />
+          
+          {/* Auth pages */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/reset-password" element={<PasswordReset />} />
           
-          {/* Main App Routes */}
-          <Route path="/" element={
-            <ProtectedRoute>
-              <Home 
-                allShoes={shoeList}
-                shoes={filteredShoes}
-                onAddShoeToCart={handleAddToCart}
-                setFilteredShoes={setFilteredShoes}
-              />
-            </ProtectedRoute>
-          } />
-          
+          {/* Protected routes */}
           <Route path="/cart" element={
             <ProtectedRoute>
               <Cart
@@ -141,15 +206,13 @@ function App() {
               />
             </ProtectedRoute>
           } />
-
-          <Route path="/shoes/:id" element={
-            <ProtectedRoute>
-              <ShoeDetail />
-            </ProtectedRoute>
+          
+          <Route path="/admin" element={
+          <ProtectedRoute adminOnly={true}>
+          <AdminDashboard onAddShoe={addNewShoe} />
+          </ProtectedRoute>
           } />
           
-          {/* Redirects */}
-          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="*" element={<ErrorPage errorMessage="Page not found" />} />
         </Routes>
       </div>
@@ -157,9 +220,23 @@ function App() {
   );
 }
 
-function ProtectedRoute({ children }) {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" replace />;
+function ProtectedRoute({ children, requireAuth = true, adminOnly = false }) {
+  const { user, isLoading: authLoading } = useAuth();
+  const location = useLocation();
+
+  if (authLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (adminOnly && (!user || !user.isAdmin)) {
+    return <Navigate to="/" replace />;
+  }
+
+  if (requireAuth && !user) {
+    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+  }
+
+  return children;
 }
 
 export default App;

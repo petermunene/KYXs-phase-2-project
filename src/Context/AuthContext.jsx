@@ -1,106 +1,135 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:4000"
+  : "https://my-app-backend-hvge.onrender.com/api";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [usersDB, setUsersDB] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  // Load auth state from localStorage
-  useEffect(() => {
-    const storedUser = localStorage.getItem('currentUser');
-    const storedUsers = localStorage.getItem('users');
+  // For regular users (localStorage)
+  const loginWithLocalStorage = (email, password) => {
+    const users = JSON.parse(localStorage.getItem('users') || '[]'); // Fixed default value
+    const foundUser = users.find(u => u.email === email && u.password === password);
     
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    if (!foundUser) {
+      throw new Error('Invalid email or password');
     }
-    if (storedUsers) {
-      setUsersDB(JSON.parse(storedUsers));
-    }
-    setIsLoading(false);
-  }, []);
 
-  const login = async (email, password) => {
+    const userData = {
+      email: foundUser.email,
+      isAdmin: false, // Regular users are never admins
+      isLocalUser: true
+    };
+
+    localStorage.setItem('user', JSON.stringify(userData));
+    return userData;
+  };
+
+  // For admin users (API)
+  const loginWithAPI = async (email, password) => {
+    const response = await fetch(`${BASE_URL}/login?email=${email}&password=${password}`);
+  
+    if (!response.ok) {
+      throw new Error('Network error while checking credentials');
+    }
+  
+    const users = await response.json();
+  
+    if (users.length === 0) {
+      throw new Error('Invalid admin credentials');
+    }
+  
+    const user = users[0];
+    const userData = {
+      ...user,
+      isAdmin: true,
+      isLocalUser: false
+    };
+  
+    localStorage.setItem('user', JSON.stringify(userData));
+    return userData;
+  };
+  
+
+  const login = async (email, password, isAdminLogin = false) => {
     try {
-      setIsLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 500));
+      setLoading(true);
+      const userData = isAdminLogin 
+        ? await loginWithAPI(email, password)
+        : loginWithLocalStorage(email, password);
       
-      const userExists = usersDB.find(
-        user => user.email === email && user.password === password
-      );
+      setUser(userData);
       
-      if (userExists) {
-        const userData = { 
-          email: userExists.email,
-          id: userExists.id || Date.now().toString()
-        };
-        setUser(userData);
-        localStorage.setItem('currentUser', JSON.stringify(userData));
-        return true;
+      // Handle navigation here based on user type
+      if (userData.isAdmin) {
+        navigate('/admin');
+      } else {
+        navigate('/shoes');
       }
-      throw new Error("Invalid credentials");
+      
     } catch (error) {
-      console.error("Login error:", error);
       throw error;
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
-  const signup = async (userData) => {
+  const signup = (email, password) => {
     try {
-      setIsLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 500));
+      setLoading(true);
+      const users = JSON.parse(localStorage.getItem('users') || '[]')
       
-      const emailExists = usersDB.some(user => user.email === userData.email);
-      if (emailExists) {
-        throw new Error("Email already exists");
+      if (users.some(u => u.email === email)) {
+        throw new Error('Email already exists');
       }
 
-      const newUser = {
-        ...userData,
-        id: Date.now().toString()
-      };
-
-      const updatedUsers = [...usersDB, newUser];
-      setUsersDB(updatedUsers);
-      localStorage.setItem('users', JSON.stringify(updatedUsers));
+      users.push({ email, password });
+      localStorage.setItem('users', JSON.stringify(users));
       
-      return true;
+      const userData = {
+        email,
+        isAdmin: false,
+        isLocalUser: true
+      };
+      
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUser(userData);
+      navigate('/');
     } catch (error) {
-      console.error("Signup error:", error);
-      throw error;
+      throw error; // Re-throw the error to be caught by the caller
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
   const logout = () => {
+    localStorage.removeItem('user');
     setUser(null);
-    localStorage.removeItem('currentUser');
-  };
-
-  const value = {
-    user,
-    isLoading,
-    login,
-    signup,
-    logout,
-    isAuthenticated: !!user
+    navigate('/login');
   };
 
   return (
-    <AuthContext.Provider value={value}>
-      {!isLoading && children}
+    <AuthContext.Provider value={{ 
+      user, 
+      loading,
+      login, 
+      signup,
+      logout 
+    }}>
+      {children}
     </AuthContext.Provider>
   );
 }
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
+export function useAuth() {
+  return useContext(AuthContext);
+}

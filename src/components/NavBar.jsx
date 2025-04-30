@@ -8,70 +8,96 @@ function NavBar({ cartCount }) {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate('/');
   };
 
   return (
-    <nav style={styles.navbar}>
-      <div style={styles.navContainer}>
-        <h2 style={styles.logo}>KYXs</h2>
-        <div style={styles.navLinks}>
-          <Link style={styles.navLink} to="/">Home</Link>
-          <button onClick={handleLogout} style={styles.logoutButton}>
-            Logout
-          </button>
-          <Link style={styles.cartLink} to="/cart">
-            Cart ({cartCount})
+    <nav style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '15px 20px',
+      backgroundColor: '#644619',
+      color: 'white',
+      position: 'sticky',
+      top: 0,
+      zIndex: 100
+    }}>
+      {/* Logo/Home Link */}
+      <Link 
+        to={user ? "/shoes" : "/"} 
+        style={{ 
+        textDecoration: 'none', 
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: '1.2rem'
+      }}>
+        KYXs
+      </Link>
+
+      {/* Navigation Links */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <Link to="/shoes" style={{ 
+          textDecoration: 'none', 
+          color: 'white',
+          fontSize: '0.9rem'
+        }}>
+          Shoes
+        </Link>
+
+        {/* Conditional Login/Logout */}
+        {user ? (
+          <>
+            <Link to="/cart" style={{ 
+              textDecoration: 'none', 
+              color: 'white',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px'
+            }}>
+              Cart ({cartCount})
+            </Link>
+            <button 
+              onClick={handleLogout}
+              style={{
+                background: 'transparent',
+                border: '1px solid white',
+                color: 'white',
+                padding: '5px 10px',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '0.9rem'
+              }}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to="/login" style={{ 
+            textDecoration: 'none', 
+            color: 'white',
+            background: '#8d6e63',
+            padding: '5px 15px',
+            borderRadius: '20px',
+            fontSize: '0.9rem'
+          }}>
+            Login
           </Link>
-        </div>
+        )}
+
+        {/* Admin Link (if admin) */}
+        {user?.isAdmin && (
+          <Link to="/admin" style={{ 
+            textDecoration: 'none', 
+            color: 'white',
+            fontSize: '0.9rem'
+          }}>
+            Admin
+          </Link>
+        )}
       </div>
     </nav>
   );
 }
-
-
-const styles = {
-  navbar: {
-    backgroundColor: '#a1887f',
-    padding: '10px 20px',
-    color: 'white',
-  },
-  navContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    maxWidth: '1200px',
-    margin: '0 auto',
-  },
-  logo: {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: '#3e2723',
-    margin: 0,
-  },
-  navLinks: {
-    display: 'flex',
-    gap: '20px',
-    alignItems: 'center',
-  },
-  navLink: {
-    color: '#efebe9',
-    textDecoration: 'none',
-    fontSize: '16px',
-    padding: '8px 12px',
-    borderRadius: '4px',
-    transition: 'background-color 0.3s',
-  },
-  logoutButton: {
-    backgroundColor: '#8d6e63',
-    color: 'white',
-    border: 'none',
-    padding: '8px 16px',
-    cursor: 'pointer',
-    borderRadius: '8px',
-    fontSize: '16px',
-    transition: 'background-color 0.3s',
-  },
-};
 
 export default NavBar;

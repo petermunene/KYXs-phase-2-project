@@ -6,6 +6,8 @@ function ShoeDetail() {
   const { shoe } = state || {};
   const navigate = useNavigate();
 
+  
+
   if (!shoe) {
     return (
       <div style={{ 
@@ -179,7 +181,7 @@ function ShoeDetail() {
             }
           }}
         >
-          ← Back to Products
+          ← Back
         </button>
       </div>
     </div>

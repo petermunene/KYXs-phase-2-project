@@ -10,6 +10,7 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
 
   // Pre-fill email if coming from signup
   useEffect(() => {
@@ -23,8 +24,7 @@ export default function Login() {
     try {
       setError('');
       setLoading(true);
-      await login(email, password);
-      navigate('/');
+      await login(email, password, isAdminLogin);
     } catch (error) {
       setError(error.message || 'Failed to log in. Please check your credentials.');
     } finally {
@@ -64,6 +64,17 @@ export default function Login() {
             placeholder="Enter your password"
           />
         </div>
+
+        <div className="form-group">
+  <label>
+    <input
+      type="checkbox"
+      checked={isAdminLogin}
+      onChange={(e) => setIsAdminLogin(e.target.checked)}
+    />
+    Admin Login
+  </label>
+</div>
 
         <button
           type="submit"
